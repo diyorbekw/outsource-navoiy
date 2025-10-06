@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python va Django: Raqamli Iqtisodiyotda Zamonaviy Texnologiyalar - Davlat Blogi</title>
+    <style>
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-blue: #2d3748;
+            --accent-gold: #d4af37;
+            --light-bg: #f7fafc;
+            --white: #ffffff;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+        
+        body {
+            background: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header Styles */
+        .government-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 1rem 0;
+            border-bottom: 4px solid var(--accent-gold);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .state-emblem {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .emblem-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .state-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            width: 100%;
+        }
+        
+        .blog-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .blog-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
+            color: var(--white);
+            padding: 3rem 4rem;
+            position: relative;
+        }
+        
+        .blog-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
+        .blog-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+        
+        .blog-content {
+            padding: 4rem;
+            font-size: 1.15rem;
+        }
+        
+        .content-section {
+            margin-bottom: 3rem;
+        }
+        
+        .content-section h2 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+        
+        .content-section h3 {
+            color: var(--secondary-blue);
+            font-size: 1.4rem;
+            margin: 2rem 0 1rem 0;
+        }
+        
+        .content-section p {
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        .content-section ul, .content-section ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .official-note {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3d4 100%);
+            border-left: 4px solid var(--accent-gold);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .official-note h4 {
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .comparison-table th {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .btn-secondary {
+            background: var(--accent-gold);
+            color: var(--primary-blue);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        .government-footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .blog-header {
+                padding: 2rem;
+            }
+            
+            .blog-title {
+                font-size: 2rem;
+            }
+            
+            .blog-meta {
+                gap: 1.5rem;
+            }
+            
+            .blog-content {
+                padding: 2rem;
+            }
+            
+            .blog-image {
+                height: 300px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                justify-content: center;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .blog-title {
+                font-size: 1.6rem;
+            }
+            
+            .blog-meta {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .content-section h3 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Government Header -->
+    <header class="government-header">
+        <div class="header-content">
+            <div class="state-emblem">
+                <div class="emblem-icon">DB</div>
+                <div class="state-title">
+                    Davlat Blog Portali<br>
+                    <small>Raqamli Transformatsiya Agentligi</small>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Bosh Sahifa</a>
+                <a href="#">Maqolalar</a>
+                <a href="#">Yangiliklar</a>
+                <a href="#">Aloqa</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <article class="blog-container">
+            <div class="blog-header">
+                <h1 class="blog-title">Python va Django: Raqamli Iqtisodiyotda Zamonaviy Texnologiyalar</h1>
+                <div class="blog-meta">
+                    <div class="meta-item">
+                        <span>👤</span>
+                        <span>Ma'muriyat Katta Mutaxassisi</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>⏱️</span>
+                        <span>12 daqiqa o'qish</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>📅</span>
+                        <span>20-dekabr, 2023</span>
+                    </div>
+                </div>
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                 alt="Raqamli texnologiyalar" class="blog-image">
+            
+            <div class="blog-content">
+                <div class="content-section">
+                    <h2>Kirish</h2>
+                    <p>Davlatimizning raqamli transformatsiya dasturi doirasida zamonaviy texnologiyalarni o'rganish va qo'llash strategik ahamiyatga ega. Python dasturlash tili va Django veb-freymvorki bugungi kunda dunyoning yetakchi texnologiyalari sirasiga kirib, davlat xizmatlarini raqamlashtirishda muhim rol o'ynaydi.</p>
+                    
+                    <div class="official-note">
+                        <h4>Rasmiy Ma'lumot:</h4>
+                        <p>2023-yil holatiga ko'ra, O'zbekistonda 500 dan ortiq davlat xizmatlari raqamlashtirilgan bo'lib, ularning aksariyati zamonaviy veb-texnologiyalar asosida ishlab chiqilgan.</p>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Python: Universal Dasturlash Tili</h2>
+                    <p>Python - bu dunyoning eng mashhur dasturlash tillaridan biri bo'lib, uning soddaligi va keng qo'llanilishi tufayli davlat tizimida quyidagi sohalarda qo'llanilmoqda:</p>
+                    
+                    <ul>
+                        <li>Ma'lumotlar tahlili va hisoblash</li>
+                        <li>Sun'iy intellekt va mashina o'rganishi</li>
+                        <li>Veb-ilovalarni ishlab chiqish</li>
+                        <li>Avtomatlashtirilgan tizimlar</li>
+                        <li>Xavfsizlik tizimlari</li>
+                    </ul>
+                    
+                    <h3>Davlat Sektoridagi Qo'llanilishi</h3>
+                    <p>Python dasturlash tili davlat organlarida ma'lumotlarni qayta ishlash, hisobotlar tayyorlash va murakkab hisob-kitoblarni avtomatlashtirish uchun keng qo'llanilmoqda.</p>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Django: Ishonchli Veb-ishlab chiqish Platformasi</h2>
+                    <p>Django - bu Python asosidagi yuqori darajali veb-freymvork bo'lib, tez ishlab chiqish va xavfsizlik tamoyillariga asoslangan. Uning afzalliklari:</p>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Xususiyat</th>
+                                <th>Django</th>
+                                <th>An'anaviy Tizimlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Xavfsizlik</td>
+                                <td>O'rnatilgan himoya</td>
+                                <td>Qo'shimcha sozlash talab etiladi</td>
+                            </tr>
+                            <tr>
+                                <td>Ishlab chiqish tezligi</td>
+                                <td>Juda tez</td>
+                                <td>Nisbatan sekin</td>
+                            </tr>
+                            <tr>
+                                <td>Masshtablanuvchanlik</td>
+                                <td>Yuqori</td>
+                                <td>Cheklangan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="content-section">
+                    <h2>Davlat Loyihalarida Qo'llanilishi</h2>
+                    <p>Python va Django texnologiyalari quyidagi davlat loyihalarida muvaffaqiyatli qo'llanilmoqda:</p>
+                    
+                    <ol>
+                        <li>Yagona interaktiv davlat xizmatlari portali</li>
+                        <li>Soliq va bojxona tizimlari</li>
+                        <li>Ma'lumotlar statistik markazi</li>
+                        <li>Raqamli hukumat platformasi</li>
+                    </ol>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="#" class="btn btn-primary">📥 Maqolani Yuklab Olish</a>
+                    <a href="#" class="btn btn-secondary">📊 Statistika Ma'lumotlari</a>
+                    <a href="#" class="btn btn-primary">📚 Boshqa Maqolalar</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Government Footer -->
+    <footer class="government-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Davlat Blog Portali</h3>
+                <p>Raqamli transformatsiya va innovatsion texnologiyalar bo'yicha rasmiy ma'lumotlar portali.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Tezkor Havolalar</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Raqamli Transformatsiya Agentligi</a></li>
+                    <li><a href="#">Davlat Xizmatlari Portali</a></li>
+                    <li><a href="#">Ochiq Ma'lumotlar Platformasi</a></li>
+                    <li><a href="#">Qonunchilik Bazasi</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Aloqa Ma'lumotlari</h3>
+                <ul class="footer-links">
+                    <li>📞 Aloqa markazi: 1001</li>
+                    <li>✉️ Email: info@digital.gov.uz</li>
+                    <li>📍 Manzil: Toshkent shahri</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            &copy; 2023 Davlat Blog Portali. Barcha huquqlar himoyalangan.
+        </div>
+    </footer>
+</body>
+</html>

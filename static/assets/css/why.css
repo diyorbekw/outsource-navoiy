@@ -1,0 +1,402 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+@font-face {
+	font-family: "GoogleSans";
+	src: url("/assets/css/fonts/GoogleSans-Regular.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+body {
+	color: #1a1a1a;
+	background: #fafafa;
+	line-height: 1.6;
+	font-family: "GoogleSans", Arial, sans-serif;
+}
+
+.navbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 16px 64px;
+			background: #fff;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			position: sticky;
+			top: 0;
+			z-index: 10;
+		}
+
+		.logo img {
+			width: 150px;
+			height: 60px;
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 24px;
+			list-style: none;
+		}
+
+		.nav-links li a {
+			text-decoration: none;
+			color: #333;
+			font-weight: 500;
+			transition: color 0.3s;
+		}
+
+		.nav-links li a:hover {
+			color: #2563eb;
+		}
+
+		.btn {
+			background: #1a1a1a;
+			color: #fff;
+			padding: 8px 20px;
+			border-radius: 6px;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+
+		.btn:hover {
+			background: #0056b3;
+		}
+
+		/* === HAMBURGER MENU === */
+		.hamburger {
+			display: none;
+			flex-direction: column;
+			cursor: pointer;
+			gap: 5px;
+		}
+
+		.hamburger span {
+			width: 25px;
+			height: 3px;
+			background: #333;
+			transition: all 0.3s;
+		}
+
+		/* === RESPONSIVE === */
+		@media (max-width: 900px) {
+			.navbar {
+				padding: 16px 24px;
+			}
+
+			.nav-links {
+				position: absolute;
+				top: 70px;
+				right: 0;
+				width: 100%;
+				background: #fff;
+				flex-direction: column;
+				align-items: center;
+				gap: 20px;
+				padding: 20px 0;
+				transform: translateY(-200%);
+				opacity: 0;
+				transition: all 0.4s ease-in-out;
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+			}
+
+			.nav-links.active {
+				transform: translateY(0);
+				opacity: 1;
+			}
+
+			.hamburger {
+				display: flex;
+			}
+
+			.navbar .btn {
+				display: none;
+			}
+		}
+/* Hero section */
+
+
+.hero .overlay {
+	color: #fff;
+	background: rgba(73, 73, 73, 0.178);
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.hero h1 {
+	display: flex;
+	margin-bottom: 400px;
+	padding-left: 60px;
+	font-size: 48px;
+	color: white;
+
+	font-family: 'Times New Roman', Times, serif;
+	letter-spacing: 1px;
+}
+
+.education-talent {
+	max-width: 1340px;
+	margin: 60px auto;
+	padding: 0 20px;
+	text-align: center;
+	font-family: "Inter", sans-serif;
+	color: #1d2331;
+}
+
+.education-talent h2 {
+	font-size: 28px;
+	font-weight: 600;
+	margin-bottom: 12px;
+	display: flex;
+	justify-content: end;
+	font-family: 'Times New Roman', Times, serif;
+}
+
+.education-talent .intro {
+	font-size: 16px;
+	color: #555;
+	margin-bottom: 40px;
+	line-height: 1.6;
+	display: flex;
+	justify-content: end;
+}
+
+.info-card {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 40px;
+	max-width: 1340px;
+	margin: 40px auto;
+	padding: 5px;
+}
+
+.info-boxs {
+	display: flex;
+	align-items: center;
+	background: #f9fbfd;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+	overflow: hidden;
+	transition: all 0.3s ease;
+	cursor: default;
+}
+
+.info-boxs:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+	flex: 0 0 180px;
+	height: 150px;
+	overflow: hidden;
+}
+
+.info img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.info-text {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 15px 20px;
+	font-family: "Inter", sans-serif;
+}
+
+.info-text ion-icon {
+	font-size: 22px;
+	color: #0f172a;
+	flex-shrink: 0;
+}
+
+.info-text p {
+	font-size: 22px;
+	color: #1e293b;
+	font-family: 'Times New Roman', Times, serif;
+	line-height: 1.5;
+	margin: 0;
+	font-weight: 500;
+}
+
+.info-text strong {
+	font-weight: 600;
+	color: #0f172a;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+	.info-card {
+		grid-template-columns: 1fr;
+	}
+
+	.info {
+		flex: 0 0 100px;
+		height: 90px;
+	}
+}
+
+h1 {
+	font-size: 45px;
+	margin-bottom: 20px;
+	color: #222;
+	font-weight: 200;
+	font-family: "GoogleSans", Arial, sans-serif;
+}
+
+.tabs-nav {
+	display: flex;
+	max-width: 1340px;
+	margin: auto;
+	flex-direction: column;
+}
+
+.tabs {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 25px;
+}
+
+.tab {
+	padding: 20px 80px;
+	border: 1px solid #a2c98f;
+	border-radius: 6px;
+	background: white;
+	cursor: pointer;
+	font-size: 14px;
+	transition: 0.3s;
+}
+
+.tab:hover {
+	background: #f0f5f0;
+}
+
+.tab.active {
+	background: #4caf50;
+	color: white;
+	border: none;
+}
+
+/* Content box */
+.content-box {
+	display: flex;
+	justify-content: space-between;
+	background: #fff;
+	border-radius: 8px;
+	padding: 10px;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+	max-width: 1240px;
+}
+
+.content-box img {
+	width: 300px;
+	border-radius: 6px;
+	object-fit: cover;
+}
+
+.content-text {
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.content-text ul {
+	margin: 10px 0 0 20px;
+}
+
+footer .newsletter-container form {
+	position: relative;
+}
+
+.footer {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 40px 80px;
+	background: #111;
+}
+
+.footer-column {
+	flex: 1;
+	padding: 0 20px;
+}
+
+/* Chap qism (logo va text) */
+.footer-logo img {
+	width: 180px;
+	margin-bottom: 10px;
+}
+
+.footer-logo h4 {
+	margin: 5px 0;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.footer-logo p {
+	margin-top: 10px;
+	font-size: 14px;
+	line-height: 1.6;
+	color: #ddd;
+}
+
+/* O‘rta qism (Quick Links) */
+.footer-links h4 {
+	margin-bottom: 15px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.footer-links ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.footer-links ul li {
+	margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+	color: #f2f2f2;
+	text-decoration: none;
+	font-size: 14px;
+	transition: 0.3s;
+}
+
+.footer-links ul li a:hover {
+	color: #4cafef;
+}
+
+/* O‘ng qism (Sign-Up) */
+.footer-signup h4 {
+	margin-bottom: 15px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.footer-signup p {
+	font-size: 14px;
+	line-height: 1.6;
+	color: #ddd;
+}
+
+/* Responsiv */
+@media (max-width: 900px) {
+	.footer {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.footer-column {
+		margin-bottom: 20px;
+	}
+}
