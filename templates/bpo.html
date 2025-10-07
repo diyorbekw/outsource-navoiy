@@ -1,0 +1,715 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>IT Visa</title>
+	<link rel="stylesheet" href="{% static 'assets/css/why.css' %}" />
+	<style>
+		/* === GLOBAL RESET === */
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: "Poppins", sans-serif;
+		}
+
+		body {
+			background-color: #ffffff;
+			color: #333;
+			line-height: 1.6;
+		}
+
+		/* === CONTAINER === */
+		.container {
+			max-width: 1340px;
+			margin: 0 auto;
+			padding: 0 20px;
+		}
+
+		/* === NAVBAR === */
+		.navbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 16px 0;
+			background: #fff;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+			position: sticky;
+			top: 0;
+			z-index: 100;
+		}
+
+		.logo img {
+			width: 150px;
+			height: 60px;
+			object-fit: contain;
+		}
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 24px;
+			list-style: none;
+			transition: all 0.4s ease-in-out;
+		}
+
+		.nav-links li a {
+			text-decoration: none;
+			color: #333;
+			font-weight: 500;
+			transition: color 0.3s;
+		}
+
+		.nav-links li a:hover {
+			color: #2563eb;
+		}
+
+		.btn {
+			background: #1a1a1a;
+			color: #fff;
+			padding: 8px 20px;
+			border-radius: 6px;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+
+		.btn:hover {
+			background: #0056b3;
+		}
+
+		/* === HAMBURGER MENU === */
+		.hamburger {
+			display: none;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			gap: 5px;
+			cursor: pointer;
+			width: 30px;
+			height: 24px;
+			transition: transform 0.3s ease-in-out;
+		}
+
+		.hamburger span {
+			display: block;
+			width: 100%;
+			height: 3px;
+			background: #333;
+			border-radius: 2px;
+			transition: all 0.4s ease-in-out;
+		}
+
+		.hamburger.open span:nth-child(1) {
+			transform: translateY(9px) rotate(45deg);
+		}
+
+		.hamburger.open span:nth-child(2) {
+			opacity: 0;
+		}
+
+		.hamburger.open span:nth-child(3) {
+			transform: translateY(-9px) rotate(-45deg);
+		}
+
+		/* === HERO SECTION === */
+		.hero {
+			background: url("{% static 'assets/media/images/63f02ff0cf19e90057f797ce40ffcc2cbc8bded8.png' %}") no-repeat center center/cover;
+			height: 70vh;
+			display: flex;
+			align-items: flex-start;
+			padding: 80px 0;
+			position: relative;
+		}
+
+		.hero .overlays {
+			background: rgba(255, 255, 255, 0.15);
+			border-radius: 20px;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			padding: 20px;
+			max-width: 400px;
+			text-align: center;
+			color: #fff;
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+		}
+
+		.hero .overlays h1 {
+			font-size: 48px;
+			font-weight: 700;
+			margin-bottom: 20px;
+		}
+
+		.hero .overlays p {
+			font-size: 18px;
+			line-height: 1.4;
+		}
+
+		/* === RISK SECTION === */
+		.risk-section {
+			background: #f8f9fa;
+			padding: 40px 0;
+			text-align: center;
+		}
+
+		.risk-cards {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 30px;
+			margin: 20px auto 0;
+		}
+
+		.risk-card {
+			background: white;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 10px;
+			text-transform: uppercase;
+			border-radius: 10px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+			padding: 20px;
+			flex: 1 1 250px;
+			text-align: left;
+		}
+
+		.risk-card img {
+			width: 50px;
+			height: 50px;
+		}
+
+		.risk-card p {
+			font-size: 14px;
+			color: #333;
+		}
+
+		/* === VISA SECTION === */
+		.visa-section {
+			text-align: center;
+			padding: 60px 0;
+			border-radius: 8px;
+			margin: 40px auto;
+		}
+
+		.visa-section h2 {
+			font-size: 28px;
+			margin-bottom: 40px;
+			font-weight: 600;
+		}
+
+		.visa-cards {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 40px;
+		}
+
+		.visa-card {
+			background-color: #fff;
+			border-radius: 10px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+			padding: 25px;
+			width: 320px;
+			text-align: center;
+			transition: transform 0.3s;
+		}
+
+		/* Why Uzbekistan */
+		.why-uzbekistan {
+			padding: 60px 0;
+		}
+
+		.why-uzbekistan .container {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 2rem;
+		}
+
+		.why-uzbekistan .left {
+			flex: 1;
+			min-width: 300px;
+		}
+
+		.why-uzbekistan .right {
+			flex: 1;
+			min-width: 300px;
+		}
+
+		.stats {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1rem;
+		}
+
+		.stats h3 {
+			color: #008000;
+		}
+
+		.timezone {
+			margin-top: 1rem;
+			font-weight: bold;
+		}
+
+		/* Services */
+		.services {
+			padding: 60px 0;
+			text-align: center;
+		}
+
+		.service-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 1rem;
+			margin-top: 1rem;
+		}
+
+		.service-item {
+			background: #f5f5f5;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+
+		.service-item img {
+			width: 100%;
+			height: 150px;
+			object-fit: cover;
+		}
+
+		.service-item p {
+			padding: .5rem;
+			font-weight: bold;
+		}
+
+		/* Tax Preferences */
+		.tax {
+			padding: 60px 0;
+		}
+
+		.tax .container {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 2rem;
+		}
+
+		.tax-card {
+			background: #000;
+			color: #fff;
+			padding: 1.5rem;
+			border-radius: 8px;
+		}
+
+		.tax-card.green {
+			background: #5DB34E;
+			color: #fff;
+		}
+
+		.tax-card h3 {
+			margin-bottom: 1rem;
+		}
+
+		.tax-card ul {
+			list-style: none;
+		}
+
+		.tax-card ul li {
+			margin-bottom: .5rem;
+		}
+
+		/* Steps */
+		.steps {
+			padding: 60px 0;
+			text-align: center;
+			background: #f9f9f9;
+		}
+
+		.steps-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			gap: 1rem;
+			margin-top: 1rem;
+		}
+
+		.step {
+			background: #fff;
+			border: 1px solid #ddd;
+			padding: 1rem;
+			border-radius: 8px;
+		}
+
+		.step span {
+			display: inline-block;
+			background: #008000;
+			color: #fff;
+			padding: .5rem 1rem;
+			border-radius: 50%;
+			font-weight: bold;
+			margin-bottom: .5rem;
+		}
+
+		.visa-card:hover {
+			transform: translateY(-8px);
+		}
+
+		.icon img {
+			width: 80px;
+			height: 80px;
+			margin-bottom: 15px;
+		}
+
+		.visa-card h3 {
+			font-size: 18px;
+			margin-bottom: 15px;
+			font-weight: 600;
+		}
+
+		.visa-card p {
+			font-size: 14px;
+			line-height: 1.6;
+			text-align: justify;
+			color: #333;
+		}
+
+		/* === FOOTER === */
+		.footer {
+			background: #1a1a1a;
+			color: #fff;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			gap: 30px;
+			padding: 50px 0;
+		}
+
+		.footer-column {
+			flex: 1 1 300px;
+		}
+
+		.footer-logo img {
+			width: 120px;
+			margin-bottom: 10px;
+		}
+
+		.footer h4 {
+			margin-bottom: 15px;
+			font-size: 18px;
+		}
+
+		.footer p {
+			font-size: 14px;
+			line-height: 1.6;
+			color: #ddd;
+		}
+
+		.footer-links ul {
+			list-style: none;
+		}
+
+		.footer-links li {
+			margin-bottom: 8px;
+		}
+
+		.footer-links a {
+			color: #ddd;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+
+		.footer-links a:hover {
+			color: #8cd18c;
+		}
+
+		/* === RESPONSIVE DESIGN === */
+		@media (max-width: 1024px) {
+			.navbar {
+				padding: 16px 0;
+			}
+		}
+
+		@media (max-width: 768px) {
+			.hamburger {
+				display: flex;
+			}
+
+			.nav-links {
+				position: absolute;
+				top: 100%;
+				left: 0;
+				width: 100%;
+				flex-direction: column;
+				background: white;
+				text-align: center;
+				padding: 20px 0;
+				gap: 16px;
+				transform: translateY(-200%);
+				opacity: 0;
+				pointer-events: none;
+				transition: all 0.4s ease-in-out;
+			}
+
+			.nav-links.active {
+				transform: translateY(0);
+				opacity: 1;
+				pointer-events: all;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+			}
+
+			.btn {
+				display: none;
+			}
+
+			.hero {
+				padding: 60px 0;
+				height: 60vh;
+				align-items: center;
+				justify-content: center;
+				text-align: center;
+			}
+
+			.hero .overlays h1 {
+				font-size: 36px;
+			}
+
+			.footer {
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				padding: 40px 0;
+			}
+			
+			.stats {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			
+			.service-grid {
+				grid-template-columns: 1fr;
+			}
+			
+			.steps-grid {
+				grid-template-columns: 1fr;
+			}
+		}
+		
+		@media (max-width: 480px) {
+			.hero .overlays h1 {
+				font-size: 28px;
+			}
+			
+			.hero .overlays p {
+				font-size: 16px;
+			}
+			
+			.stats {
+				grid-template-columns: 1fr;
+			}
+			
+			.risk-card {
+				flex-direction: column;
+				text-align: center;
+			}
+			
+			.why-uzbekistan .container {
+				flex-direction: column;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<!-- ===== NAVBAR ===== -->
+	<header>
+		<div class="container">
+			<div class="navbar">
+				<div class="logo">
+					<a href="{% url 'home' %}">
+						<img src="{% static 'assets/Frame (1).png' %}" alt="logo">
+					</a>
+				</div>
+
+				<ul class="nav-links" id="navLinks">
+					<li><a href="{% url 'why' %}">Why Navoi?</a></li>
+					<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
+					<li><a href="{% url 'bpo' %}">BPO</a></li>
+					<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
+				</ul>
+
+				<a href="#" class="btn">Contact us</a>
+
+				<div class="hamburger" id="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- ===== HERO SECTION ===== -->
+	<section class="hero">
+		<div class="container">
+			<div class="overlays">
+				<h1>IT Visa</h1>
+				<p>
+					A resident company is eligible to apply for IT Visas that are provided to its founders, investors, and
+					employees. It is valid for 3 years and allows to work in Uzbekistan without a work permit.
+				</p>
+			</div>
+		</div>
+	</section>
+	
+	<section class="why-uzbekistan">
+		<div class="container">
+			<div class="left">
+				<h2>Why Uzbekistan ?</h2>
+				<p>Uzbekistan is the top place for offshore BPO logistics, talent, and IT services due to its strong workforce,
+					competitive costs, and convenient time zone. Legal regulations and preferences ensure stability for US &
+					European companies.</p>
+			</div>
+			<div class="right">
+				<div class="stats">
+					<div>
+						<h3>20,000+</h3>
+						<p>Specialists</p>
+					</div>
+					<div>
+						<h3>300+</h3>
+						<p>Companies in IT Park</p>
+					</div>
+					<div>
+						<h3>100,000+</h3>
+						<p>English-speaking professionals</p>
+					</div>
+					<div>
+						<h3>24/7</h3>
+						<p>Time zone overlapping US & Europe</p>
+					</div>
+				</div>
+				<p class="timezone">Convenient Time Zone (Europe & USA)</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Services Section -->
+	<section class="services">
+		<div class="container">
+			<h2>What services can be outsourced?</h2>
+			<div class="service-grid">
+				<div class="service-item">
+					<img src="{% static 'img/callcenter.jpg' %}" alt="Call Center">
+					<p>Contact/Call Center</p>
+				</div>
+				<div class="service-item">
+					<img src="{% static 'img/backoffice.jpg' %}" alt="Back Office">
+					<p>Back & Core Office</p>
+				</div>
+				<div class="service-item">
+					<img src="{% static 'img/it.jpg' %}" alt="IT Services">
+					<p>IT & Network</p>
+				</div>
+				<div class="service-item">
+					<img src="{% static 'img/accounting.jpg' %}" alt="Accounting">
+					<p>Accounting & Back Office Support</p>
+				</div>
+				<div class="service-item">
+					<img src="{% static 'img/development.jpg' %}" alt="Software Development">
+					<p>Software Development</p>
+				</div>
+				<div class="service-item">
+					<img src="{% static 'img/customer.jpg' %}" alt="Customer Support">
+					<p>Customer Support</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Tax Preferences Section -->
+	<section class="tax">
+		<div class="container">
+			<div class="tax-card">
+				<h3>Tax Preferences For IT Park Members</h3>
+				<ul>
+					<li>0% Corporate income tax</li>
+					<li>0% Property & Land tax</li>
+					<li>5% Personal income tax</li>
+					<li>0% Customs duties</li>
+				</ul>
+			</div>
+			<div class="tax-card green">
+				<h3>ZERO RISK: expenses reimbursement</h3>
+				<ul>
+					<li>Partial coverage of HR services</li>
+					<li>Up to $2000 for employee training</li>
+					<li>Free office for 1 year</li>
+					<li>Estimated cost efficiency 50-60%</li>
+					<li>Free technical equipment</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<!-- How to get started -->
+	<section class="steps">
+		<div class="container">
+			<h2>How to get started?</h2>
+			<div class="steps-grid">
+				<div class="step"><span>1</span>
+					<p>Submit an application and verify in Uzbekistan</p>
+				</div>
+				<div class="step"><span>2</span>
+					<p>Apply for the Member License</p>
+				</div>
+				<div class="step"><span>3</span>
+					<p>List in tax benefits and get support</p>
+				</div>
+				<div class="step"><span>4</span>
+					<p>Join the international BPO/IT ecosystem</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ===== FOOTER ===== -->
+	<footer class="footer">
+		<div class="container">
+			<div class="footer-column footer-logo">
+				<img src="{% static 'assets/media/logo-navoi.png' %}" alt="Logo">
+				<h4>NAVOI REGIONAL GOVERNMENT</h4>
+				<p>Lorem ipsum dolor sit amet consectetur. Ut elementum vitae bibendum mi arcu consectetur viverra accumsan felis
+					pharetra.</p>
+			</div>
+
+			<div class="footer-column footer-links">
+				<h4>Quick Links</h4>
+				<ul>
+					<li><a href="#">Why Navoi?</a></li>
+					<li><a href="#">Explore opportunities</a></li>
+					<li><a href="#">BPO</a></li>
+					<li><a href="#">IT Visa</a></li>
+				</ul>
+			</div>
+
+			<div class="footer-column footer-signup">
+			<h4>Sign-Up For Updates</h4>
+				<p>Etiam quis nunc et nulla nulla velit donec. Ac varius sollicitudin eget morbi varius nibh nunc dui ultrices.
+				</p>
+			</div>
+		</div>
+	</footer>
+
+	<!-- ===== SCRIPT ===== -->
+	<script>
+		const hamburger = document.getElementById('hamburger')
+		const navLinks = document.getElementById('navLinks')
+
+		hamburger.addEventListener('click', () => {
+			hamburger.classList.toggle('open')
+			navLinks.classList.toggle('active')
+		});
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,650 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+
+    <title></title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/media/icons/removebg.png' %}" />
+
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/font-awesome.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/slick.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/vendor/slick-theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/app.css' %}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+
+<body>
+    <!-- Main Wrapper Start -->
+    <div>
+        <header class="header">
+            <!-- HEADER MENU START -->
+            <div class="container-fluid">
+                <nav class="navigation d-flex align-items-center justify-content-between">
+                    <a href="{% url 'home' %}" class="d-flex align-items-center">
+                        <img src="{% static 'assets/media/logonavoi.png' %}" alt="/logo" class="header-logo" />
+                    </a>
+                    <div class="menu-button-right">
+                        <div class="main-menu__nav">
+                            <ul class="main-menu__list">
+                                <li><a href="{% url 'why' %}" id="nav-why">Why Navoi?</a></li>
+                                <li>
+                                    <a href="{% url 'explore' %}" id="nav-explore">Explore opportunities</a>
+                                </li>
+                                <li><a href="{% url 'bpo' %}" id="nav-bpo">BPO</a></li>
+                                <li><a href="{% url 'it-visa' %}" id="nav-visa">IT Visa</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="main-menu__right d-flex align-items-center">
+                        <!-- Til tanlash -->
+
+                    </div>
+
+                    <a href="#" class="d-xl-none d-flex main-menu__toggler mobile-nav__toggler">
+                        <img src="{% static 'assets/media/icons/menu-2.png' %}" alt="" />
+                    </a>
+            </div>
+            </nav>
+    </div>
+    </header>
+    <section class="hero-banner">
+        <div class="container-fluid">
+            <div class="hero-wrapper">
+                <div class="row row-gap-4 align-items-center mb-12">
+                    <div class="col-lg-12 order-sm-2 order-1">
+                        <div class="hero-main-block text-center">
+                            <div class="mb-72">
+                                <h1 class="white fw-700 mb-24">
+                                    Smart Outsourcing Starts in Uzbekistan
+                                </h1>
+                                <h5 class="mb-72">
+                                    The Republic of Uzbekistan <br />Navoi Region
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-gap-4 align-items-center">
+                    <div class="col-lg-4 order-sm-1 order-2">
+                        <div class="first-block">
+                            <div class="sub-block currency-box">
+                                <div class="content-box">
+                                    <p class="font-sec white fw-500 mb-12">
+                                        BENEFITS FOR IT COMPANIES:
+                                    </p>
+                                    <p class="white fw-500 mb-12">0% CORPORATE TAXES</p>
+                                    <p class="white fw-500 mb-12">0% SOCIAL TAX</p>
+                                    <p class="white fw-500 mb-12">0% PROPERTY & LAND TAX</p>
+                                    <p class="white fw-500 mb-12">NO VAAT ON IMPORTED TAX</p>
+                                    <p class="white fw-500 mb-12">5% TAX ON DIVIDENDS</p>
+                                    <p class="white fw-500 mb-12">7.5% PERSONAL INCOME TAX</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 order-sm-2 order-1"></div>
+                    <div class="col-lg-4 order-sm-3 order-3">
+                        <div class="first-block v2">
+                            <div class="sub-block currency-box">
+                                <div class="content-box">
+                                    <p class="font-sec white fw-500 mb-12">
+                                        ELIGIBLE COMPANIES:
+                                    </p>
+                                    <p class="white fw-500 mb-12">SOFTWARE DEVELOPMENT</p>
+                                    <p class="white fw-500 mb-12">
+                                        BUSINESS PROCESS OUTSOURCING
+                                    </p>
+                                    <p class="white fw-500 mb-12">HIGH_TECH SOLUTIONS</p>
+                                    <p class="white fw-500 mb-12">CREATIVE & MULTIMEDIA</p>
+                                    <p class="white fw-500 mb-12">
+                                        STARTUP & VENTURE SUPPORT
+                                    </p>
+                                    <p class="white fw-500 mb-12">EDUCATION & TRAINING</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- HERO BANNER END -->
+
+    <!-- DIGITAL TRACK SECTION START -->
+    <section class="digital-track-sec pt-100">
+        <div class="gradient-circle"></div>
+        <div class="container">
+            <div class="digital-track-wrapper mb-24">
+                <div class="row row-gap-4">
+                    <div class="col-lg-6">
+                        <div class="d-sm-flex align-items-center justify-content-between">
+                            <img src="{% static 'assets/media/map.png' %}" alt="" class="img-fluid" />
+
+                            <img src="{% static 'assets/media/vector/dotted-line.png' %}" alt="" class="d-sm-block d-none" />
+                            <img src="{% static 'assets/media/vector/dotted-line-hr.png' %}" alt=""
+                                class="d-sm-none d-block mt-sm-0 mt-24" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6 px-4">
+                        <h2 class="h1 black fw-500 mb-24 text-center">
+                            About Navoi Region
+                        </h2>
+                        <div class="about-nv mb-24">
+                            <p>
+                                <strong>Navoi Region</strong> is strategically located in
+                                the central part of Uzbekistan, offering easy access to
+                                major cities like <strong>Samarkand and Bukhara</strong>.
+                            </p>
+                            <br />
+
+                            <p>
+                                With a <strong>population of over 1 million</strong>, the
+                                region is known for its industrial potential and
+                                <strong>rich natural resources</strong>, including gold,
+                                gas, and rare minerals.
+                            </p>
+                        </div>
+                        <div class="about-nv">
+                            <p>
+                                The region hosts <strong>5 universities</strong> that
+                                specialize in engineering, IT, and business, and foreign
+                                languages providing a steady pipeline of skilled talent.
+                            </p>
+                            <br />
+
+                            <p>
+                                Uzbek and Russian are widely spoken, and English proficiency
+                                is growing rapidly among young professionals, making Navoi
+                                an attractive destination for international companies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- DIGITAL TRACK SECTION END -->
+
+    <section class="blog-section">
+        <div class="container my-5">
+            <div class="benefit-hero-head mb-4">
+                <div class="benefit-hero-row">
+                    <img src="{% static 'assets/media/benefit-card/it-park.png' %}" class="benefit-hero-logo"
+                        alt="IT Park Uzbekistan" />
+                    <div class="benefit-hero-text">
+                        <h1 class="benefit-hero-title">
+                            Your Gateway to Central Asia’s IT Market
+                        </h1>
+                        <p class="benefit-hero-sub">
+                            IT Park is a government-backed organization offering
+                            everything your tech business needs — from tax exemptions and
+                            modern infrastructure to talent support and investor programs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4">
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <img src="{% static 'assets/media/benefit-card/0ffdb1d86a08092045254fce7eca847c9c677ca4.jpg' %}"
+                            alt="Office" />
+                        <div class="overlay">
+                            <h3 class="black">
+                                <i class="bi bi-buildings benefit-icon"></i>Modern Office
+                                Spaces
+                            </h3>
+                            <p>Ready-to-use facilities with high-speed internet</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <img src="{% static 'assets/media/benefit-card/24342ba5759996fbaa9e5b8be5cd9cb074317700.jpg' %}"
+                            alt="Tax Benefits" />
+                        <div class="overlay">
+                            <h3 class="black">
+                                <i class="bi bi-percent benefit-icon"></i>Tax Benefits
+                            </h3>
+                            <p>0% corporate tax, VAT, and social payments</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <img src="{% static 'assets/media/benefit-card/b271e3afb04f84a99d8588b94a3a2bbe37a6e382.jpg' %}"
+                            alt="Government Support" />
+                        <div class="overlay">
+                            <h3 class="black">
+                                <i class="bi bi-hand-thumbs-up benefit-icon"></i>Full
+                                Government Support
+                            </h3>
+                            <p>Legal, visa, and administrative assistance</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <img src="{% static 'assets/media/benefit-card/cc9a8aa1ffde13fb2a78b7141e193422f14808e0.jpg' %}"
+                            alt="Skilled Workforce" />
+                        <div class="overlay">
+                            <h3 class="black">
+                                <i class="bi bi-bookmark-check benefit-icon"></i>Skilled
+                                Workforce
+                            </h3>
+                            <p>Access to young, multilingual tech talent</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="col-md-4">
+                    <div class="benefit-card">
+                        <img src="{% static 'assets/media/benefit-card/b271e3afb04f84a99d8588b94a3a2bbe37a6e382.jpg' %}"
+                            alt="Startup and Expansion Programs" />
+                        <div class="overlay">
+                            <h3 class="black">
+                                <i class="bi bi-link-45deg benefit-icon"></i>Startup and
+                                Expansion Programs
+                            </h3>
+                            <p>Grants, accelerators, mentorship</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="stats-section">
+        <h2 class="section-title">Success in Numbers</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <p class="stat-label">RESIDENT COMPANIES</p>
+                <h3 class="stat-value">50+</h3>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">EXPORT REVENUE</p>
+                <h3 class="stat-value">4M+</h3>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">EXPORT DESTINATIONS</p>
+                <h3 class="stat-value">20+</h3>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">SKILLED SPECIALISTS</p>
+                <h3 class="stat-value">290+</h3>
+            </div>
+        </div>
+    </section>
+    <div class="testimonial-slider">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for client in clients %}
+                <div class="swiper-slide">
+                    <div class="swiper-slide-2">
+                        <div class="stars">
+                            {% for i in ""|center:client.rating %}
+                                ★
+                            {% endfor %}
+                        </div>
+                        <div class="quote-mark">❝</div>
+                    </div>
+                    <p class="testimonial-text">
+                        {{ client.description }}
+                    </p>
+                    <div class="profile">
+                        <img src="{{ client.profile_photo.url }}" alt="profile">
+                        <div class="profile-info">
+                            <strong>{{ client.full_name }}</strong>
+                            <span>{{ client.address }}</span>
+                        </div>
+                    </div>
+                    <div class="company">{{ client.company_name }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+
+        </div>
+    </div>
+    <!-- Testimonials Section End -->
+
+    <!-- Blogs Section Start -->
+    <section class="blog-section py-100">
+        <div class="container">
+            <div class="news-header">
+                <h2>News</h2>
+                <a href="#" class="see-all">See all →</a>
+            </div>
+            <div class="row row-gap-4">
+                {% for blog in blogs %}
+                <div class="col-xl-4 col-lg-6 col-md-6 ">
+                    
+                    <div class="blog-card">
+                        
+                        <a href="#">
+                            <div class="blog-image shine">
+                                <img src="{{ blog.image.url }}" class="w-100" alt=""
+                                    style="width: 600px; height:270px;" />
+                            </div>
+                            <div class="blog-content ">
+                                <div class="d-flex align-items-center justify-content-between mb-32">
+                                    <h6 class="fw-600 " style='color: black;'>
+                                        {{ blog.title }}
+                                    </h6>
+                                    <p class="black">{{ blog.created_at|date:"d.m.y" }}</p>
+                                </div>
+                                <p>
+                                    {{ blog.description }}
+                                </p>
+                                <br>
+
+                                <div class="text-center">
+                                    <div class="cus-btn-3">
+                                        <span>Read More</span>
+                                        <span>Read More</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+  
+    <!-- Question Section End -->
+
+    <!-- Contact Section Start -->
+    <div class="wrap">
+        <!-- chapda: Kontakt form -->
+        <aside class="form-card" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact </h2>
+<form method="POST" action="{% url 'contact' %}">
+    {% csrf_token %}
+    <div class="grid-2">
+        <div class="field">
+            <label for="firstName">Firstname</label>
+            <input id="firstName" name="first_name" type="text" placeholder="Ismingiz" required />
+        </div>
+
+        <div class="field">
+            <label for="lastName">Lastname</label>
+            <input id="lastName" name="last_name" type="text" placeholder="Familyangiz" required />
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="you@example.com" required />
+    </div>
+
+    <div class="field">
+        <label for="phone">Phone number</label>
+        <input id="phone" name="phone" type="tel" placeholder="+998 99 123 45 67" />
+    </div>
+
+    <div class="field">
+        <label for="company">Company name</label>
+        <input id="company" name="company" type="text" placeholder="Kompaniya nomi (agar mavjud bo'lsa)" />
+    </div>
+
+    <div class="field">
+        <label for="message">Text</label>
+        <textarea id="message" name="message" placeholder="Xabaringizni yozing..." required></textarea>
+    </div>
+
+    <div class="actions">
+        <button class="btn" type="submit">Submit</button>
+    </div>
+</form>
+
+        </aside>
+
+        <!-- o‘ngda: FAQ -->
+        <section class="faq-card" aria-labelledby="faq-heading">
+            <div class="faq-title">
+
+                <h1 id="faq-heading">Frequently Asked Questions</h1>
+            </div>
+
+            <div class="faq-list" id="faqList">
+                {% for faq in faqs %}
+                <div class="faq-item">
+                    <div class="faq-q" tabindex="0">
+                        <strong>{{ faq.question }}</strong>
+                        <span class="toggle-indicator">+</span>
+                    </div>
+                    <div class="faq-a">{{ faq.answer }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+
+
+    <!-- Contact Section End -->
+
+    <!-- FOOTER START -->
+    <footer class="py-100 bg-black">
+        <div class="container">
+            <div class="row row-gap-4">
+                <div class="col-xl-4 col-lg-4">
+                    <div class="footer-block">
+                        <a href="{% url 'home' %}">
+                            <img src="{% static 'assets/media/logonavoi.png' %}" alt="" class="mb-24" />
+                        </a>
+                        <p class="white mb-24">
+                            Lorem ipsum dolor sit amet consectetur. Ut elementum vitae
+                            bibendum mi arcu consectetur viverra accumsan felis pharetra.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-3">
+                    <div class="footer-block block-2">
+                        <ul class="list-unstyled m-0 p-0 text-center">
+                            <li class="mb-24">
+                                <h6 class="fw-500">Quick Links</h6>
+                            </li>
+                            <li class="mb-24 white"><a href="{% url 'why' %}">Why Navoi?</a></li>
+                            <li class="mb-24 white">
+                                <a href="{% url 'explore' %}">Explore oppoturnities</a>
+                            </li>
+                            <li class="mb-24 white"><a href="{% url 'bpo' %}">BPO</a></li>
+                            <li class="white"><a href="{% url 'it-visa' %}">IT Visa</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-5 col-lg-5 col-md-9">
+                    <div class="newsletter-container text-sm-end">
+                        <h6 class="white mb-24">Sign-Up For Updates</h6>
+                        <p class="white mb-24">
+                            Etiam quis nunc et nulla nulla velit donec. Ac varius
+                            sollicitudin eget morbi varius nibh nunc dui ultrices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- FOOTER END -->
+    </div>
+    <!-- Main Wrapper End -->
+
+    <!-- Back To Top Start -->
+    <button class="scrollToTopBtn"><i class="fa fa-arrow-up"></i></button>
+
+    <!-- Mobile Menu Start -->
+    <div class="mobile-nav__wrapper">
+        <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+        <div class="mobile-nav__content">
+            <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+            <div class="logo-box">
+                <a href="index.html" aria-label="logo image"><img src="{% static 'assets/media/logonavoi.png' %}" alt="" /></a>
+            </div>
+            <div class="mobile-nav__container"></div>
+            <ul class="mobile-nav__contact list-unstyled">
+                <li>
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:example@company.com">example@company.com</a>
+                </li>
+                <li>
+                    <i class="fa fa-phone-alt"></i>
+                    <a href="tel_3A+12345678">+123 (4567) -890</a>
+                </li>
+            </ul>
+            <div class="mobile-nav__social">
+                <a href="default.htm"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="default.htm"><i class="fab fa-facebook"></i></a>
+                <a href="default.htm"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Menu End -->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <!-- Jquery Js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // FAQ toggle
+        document.querySelectorAll('.faq-q').forEach(function (q) {
+            q.addEventListener('click', toggleFAQ)
+            q.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleFAQ.call(this) }
+            })
+        })
+
+        function toggleFAQ() {
+            const faqItem = this.closest('.faq-item')
+            const answer = faqItem.querySelector('.faq-a')
+            const indicator = faqItem.querySelector('.toggle-indicator')
+            const isOpen = answer.style.display === 'block'
+            document.querySelectorAll('.faq-a').forEach(a => a.style.display = 'none')
+            document.querySelectorAll('.toggle-indicator').forEach(i => i.textContent = '+')
+            if (!isOpen) {
+                answer.style.display = 'block'
+                indicator.textContent = '−'
+            }
+        }
+
+        // Form submit simulation
+        const form = document.getElementById('contactForm')
+        const successBox = document.getElementById('success')
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault()
+            const required = ['firstName', 'lastName', 'email', 'message']
+            let ok = true
+            required.forEach(id => {
+                const el = document.getElementById(id)
+                if (!el.value.trim()) {
+                    el.style.borderColor = '#ef4444'
+                    ok = false
+                } else {
+                    el.style.borderColor = '#e6edf8'
+                }
+            })
+            if (!ok) {
+                successBox.style.display = 'none'
+                return
+            }
+            successBox.style.display = 'block'
+        })
+
+        document.querySelectorAll('input, textarea').forEach(el => {
+            el.addEventListener('input', () => el.style.borderColor = '#e6edf8')
+        })
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 20,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 }
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const nums = document.querySelectorAll('.number')
+            const io = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return
+                    const el = entry.target
+                    startCount(el)
+                    obs.unobserve(el)
+                })
+            }, { threshold: 0.5 })
+
+            nums.forEach(n => io.observe(n))
+
+            function startCount(el) {
+                const target = Number(el.getAttribute('data-target')) || 0
+                const duration = 1500
+                const start = 0
+                const stepTime = Math.max(Math.floor(duration / (target || 60)), 12)
+
+                let current = start
+                const increment = target > 0 ? Math.ceil(target / (duration / stepTime)) : 1
+
+                const timer = setInterval(() => {
+                    current += increment
+                    if (current >= target) {
+                        current = target
+                        clearInterval(timer)
+                    }
+                    el.textContent = formatNumber(current, target)
+                }, stepTime)
+            }
+
+            function formatNumber(value, target) {
+                if (target >= 1000000) {
+                    const m = Math.floor(value / 1000000)
+                    if (m > 0) return m + 'M+'
+                }
+                if (target >= 1000) {
+                    if (value >= 1000 && value < 1000000) {
+                        return (value / 1000).toFixed(0) + 'K+'
+                    }
+                }
+                return value.toString()
+            }
+        });
+    </script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <script src="{% static 'assets/js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-3.6.3.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/jquery-validator.js' %}"></script>
+    <script src="{% static 'assets/js/vendor/slick.min.js' %}"></script>
+
+    <script src="{% static 'assets/js/app.js' %}"></script>
+</body>
+
+</html>

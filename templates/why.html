@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Why Navoi?</title>
+	<link rel="stylesheet" href="{% static 'assets/css/why.css' %}" />
+</head>
+
+<body>
+	<style>
+		.hero {
+			background: url("{% static 'assets/media/icons/12.jpg' %}") no-repeat center center/cover;
+			height: 70vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+		}
+	</style>
+	<header class="navbar">
+		<div class="logo">
+			<a href="{% url 'home' %}">
+				<img src="{% static 'assets/Frame (1).png' %}" alt="logo">
+			</a>
+		</div>
+
+		<ul class="nav-links" id="navLinks">
+			<li><a href="{% url 'why' %}">Why Navoi?</a></li>
+			<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
+			<li><a href="{% url 'bpo' %}">BPO</a></li>
+			<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
+		</ul>
+
+		<a href="#" class="btn">Contact us</a>
+
+		<div class="hamburger" id="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</header>
+
+	<section class="hero">
+		<div class="overlay">
+			<h1>Why Navoi?</h1>
+		</div>
+	</section>
+
+	<section class="education-talent">
+		<h2>Education & Talent Development</h2>
+		<p class="intro">
+			Navoi Region is home to a fast-growing pool of skilled and multilingual talent — an essential asset for
+			international BPO companies
+		</p>
+		<div class="info-card">
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p><strong>60%</strong> of the population is under the age of 35</p>
+				</div>
+			</div>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p><strong>5 universities</strong> specializing in IT, foreign languages, and engineering</p>
+				</div>
+			</div>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p>Over <strong>200K+</strong> people speak English, while <strong>500K+</strong> are fluent in Russian</p>
+				</div>
+			</div>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p><strong>12K+</strong> university students, including <strong>3,000+</strong> in IT, business, and tech
+						disciplines</p>
+				</div>
+			</div>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p>Strong focus on <strong>English language education</strong></p>
+				</div>
+			</div>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p>Regular hackathons, and coding competitions foster early innovation culture</p>
+				</div>
+			</div>
+		</div>
+		<p class="summary">
+			With this combination of youth, education, and language proficiency, Navoi is positioned as a reliable hub for
+			global digital services and BPO.
+		</p>
+	</section>
+	<div class="tabs-nav">
+		<h1>Special Economic Zones, Industrial Ecosystem and Government Support</h1>
+		<div class="tabs">
+			<div class="tab active">Green Energy Potential</div>
+			<div class="tab">Free Economic Zones (FEZ)</div>
+			<div class="tab">Industrial Ecosystem</div>
+			<div class="tab">Strategic Location</div>
+		</div>
+		<div class="content-box">
+			<div class="content-text">
+				<p>The region is a leader in Uzbekistan's green energy strategy, with:</p>
+				<ul>
+					<li>Large-scale solar and wind power plants already in operation</li>
+					<li>High potential for green data centers and eco-friendly IT infrastructure</li>
+				</ul>
+			</div>
+			<img src="{% static 'assets/media/images/7.jpg' %}" alt="Uzbekistan Map">
+		</div>
+	</div>
+	<footer class="footer"> <!-- Chap -->
+		<div class="footer-column footer-logo"> 
+			<img src="{% static 'assets/media/logo-navoi.png' %}" alt="Logo">
+			<h4>NAVOI REGIONAL GOVERNMENT</h4>
+			<p>Lorem ipsum dolor sit amet consectetur. Ut elementum vitae bibendum mi arcu consectetur viverra accumsan felis
+				pharetra.</p>
+		</div> <!-- O'rta -->
+		<div class="footer-column footer-links">
+			<h4>Quick Links</h4>
+			<ul>
+				<li><a href="#">Why Navoi?</a></li>
+				<li><a href="#">Explore opportunities</a></li>
+				<li><a href="#">BPO</a></li>
+				<li><a href="#">IT Visa</a></li>
+			</ul>
+		</div> <!-- O'ng -->
+		<div class="footer-column footer-signup">
+			<h4>Sign-Up For Updates</h4>
+			<p>Etiam quis nunc et nulla nulla velit donec. Ac varius sollicitudin eget morbi varius nibh nunc dui ultrices.
+			</p>
+		</div>
+	</footer>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
