@@ -27,6 +27,7 @@ def why(request):
 def it_visa(request):
     return render(request, 'it.html')
 
+
 def contact_view(request):
     if request.method == "POST":
         # qabul qilish: hozirgi HTML nomlarini ham, eski CamelCase'ni ham qabul qiladi

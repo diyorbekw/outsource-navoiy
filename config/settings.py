@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-phqn#mi_k(dpq44jnvu+27iuoa%ws-sksj9aq+z!rv*cd+xw(7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["outsource.sifatdev.uz"]
+ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1", "localhost"]
 
 
 # Application definition

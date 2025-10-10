@@ -7,34 +7,62 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Why Navoi?</title>
 	<link rel="stylesheet" href="{% static 'assets/css/why.css' %}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/media/icons/removebg.png' %}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
 	<style>
 		.hero {
 			background: url("{% static 'assets/media/icons/12.jpg' %}") no-repeat center center/cover;
-			height: 70vh;
+			height: 90vh;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			position: relative;
 		}
+
+		.btn {
+			width: 200px;
+			height: 50px;
+			background-color: #062241bb;
+			color: white;
+			display: inline-block;
+			text-align: center;
+			padding-top: 5px;
+			border-radius: 10px;
+			font-weight: 600;
+			text-decoration: none;
+			transition: 0.3s ease;
+		}
+
+		.btn:hover {
+			background-color: #062241bb;
+		}
+
+		.nav-links li a {
+			font-weight: 600;
+			color: #333;
+		}
 	</style>
 	<header class="navbar">
 		<div class="logo">
 			<a href="{% url 'home' %}">
-				<img src="{% static 'assets/Frame (1).png' %}" alt="logo">
+				<img src="{% static 'assets/Frame (1).png' %}" alt="logo" style="width: 150px; height: 60px;">
 			</a>
 		</div>
 
-		<ul class="nav-links" id="navLinks">
+		<ul class="nav-links" id="navLinks" style="font-size: 22px; ">
 			<li><a href="{% url 'why' %}">Why Navoi?</a></li>
 			<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
 			<li><a href="{% url 'bpo' %}">BPO</a></li>
 			<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
+			<a href="#" class="btn">
+				<i class="fas fa-phone"></i> Contact us
+			</a>
+
 		</ul>
 
-		<a href="#" class="btn">Contact us</a>
 
 		<div class="hamburger" id="hamburger">
 			<span></span>
@@ -45,12 +73,12 @@
 
 	<section class="hero">
 		<div class="overlay">
-			<h1>Why Navoi?</h1>
+			<h1 style="font-size: 55px; font-weight:600;">Why Navoi?</h1>
 		</div>
 	</section>
 
 	<section class="education-talent">
-		<h2>Education & Talent Development</h2>
+		<h2 style="font-size: 50px; font-weight:900;">Education & Talent Development</h2>
 		<p class="intro">
 			Navoi Region is home to a fast-growing pool of skilled and multilingual talent — an essential asset for
 			international BPO companies
@@ -112,31 +140,31 @@
 			</div>
 		</div>
 		<p class="summary">
-			With this combination of youth, education, and language proficiency, Navoi is positioned as a reliable hub for
-			global digital services and BPO.
+			With this combination of youth, education, and language proficiency, Navoi is positioned as a reliable hub for global digital services and BPO.
 		</p>
 	</section>
 	<div class="tabs-nav">
 		<h1>Special Economic Zones, Industrial Ecosystem and Government Support</h1>
 		<div class="tabs">
-			<div class="tab active">Green Energy Potential</div>
-			<div class="tab">Free Economic Zones (FEZ)</div>
-			<div class="tab">Industrial Ecosystem</div>
-			<div class="tab">Strategic Location</div>
+			<div class="tab active" data-tab="green" >Green Energy Potential</div>
+			<div class="tab" data-tab="fez">Free Economic Zones (FEZ)</div>
+			<div class="tab" data-tab="eco">Industrial Ecosystem</div>
+			<div class="tab" data-tab="loc">Strategic Location</div>
 		</div>
 		<div class="content-box">
-			<div class="content-text">
+			<div class="content-text" id="tab-text">
 				<p>The region is a leader in Uzbekistan's green energy strategy, with:</p>
 				<ul>
 					<li>Large-scale solar and wind power plants already in operation</li>
 					<li>High potential for green data centers and eco-friendly IT infrastructure</li>
 				</ul>
 			</div>
-			<img src="{% static 'assets/media/images/7.jpg' %}" alt="Uzbekistan Map">
+			<img id="tab-image" src="{% static 'assets/media/images/7.jpg' %}" alt="Uzbekistan Map">
 		</div>
+
 	</div>
 	<footer class="footer"> <!-- Chap -->
-		<div class="footer-column footer-logo"> 
+		<div class="footer-column footer-logo">
 			<img src="{% static 'assets/media/logo-navoi.png' %}" alt="Logo">
 			<h4>NAVOI REGIONAL GOVERNMENT</h4>
 			<p>Lorem ipsum dolor sit amet consectetur. Ut elementum vitae bibendum mi arcu consectetur viverra accumsan felis
@@ -157,6 +185,69 @@
 			</p>
 		</div>
 	</footer>
+	<script>
+		const tabs = document.querySelectorAll('.tab')
+		const text = document.getElementById('tab-text')
+		const image = document.getElementById('tab-image')
+
+		const content = {
+			green: {
+				text: `
+      <p>The region is a leader in Uzbekistan's green energy strategy, with:</p>
+      <ul>
+        <li>Large-scale solar and wind power plants already in operation</li>
+        <li>High potential for green data centers and eco-friendly IT infrastructure</li>
+      </ul>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			},
+			fez: {
+				text: `
+      <p>Navoi FEZ offers preferential conditions for foreign investors, including:</p>
+      <ul>
+        <li>Tax and customs incentives</li>
+        <li>Simplified regulations</li>
+        <li>Access to fully equipped industrial facilities</li>
+      </ul>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			},
+			eco: {
+				text: `
+      <p>Navoi is an industrial powerhouse — hosting leading enterprises such as:</p>
+      <ul>
+        <li>NMMC (Navoi Mining and Metallurgical Company)</li>
+        <li>NavoiAzot (chemical production)</li>
+        <li>Navoiuran (uranium mining)</li>
+      </ul>
+      <p>These companies are actively seeking digital transformation, creating demand for local IT services,
+      automation, and custom software solutions.</p>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			},
+			loc: {
+				text: `
+      <p>Located in the heart of Uzbekistan, Navoi Region offers direct access to major cities like Samarkand and Bukhara.
+      The region is home to one of the country’s largest cargo airports and a state-of-the-art logistics hub,
+      making it a natural gateway for trade and IT-enabled services across Central Asia.</p>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			}
+		}
+
+		tabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				// active class o‘zgartirish
+				tabs.forEach(t => t.classList.remove('active'))
+				tab.classList.add('active')
+
+				// content yangilash
+				const key = tab.getAttribute('data-tab')
+				text.innerHTML = content[key].text
+				image.src = content[key].img
+			})
+		});
+	</script>
 	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
