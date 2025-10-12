@@ -29,25 +29,24 @@ def it_visa(request):
 
 def contact_view(request):
     if request.method == "POST":
-        # qabul qilish: hozirgi HTML nomlarini ham, eski CamelCase'ni ham qabul qiladi
-        first_name = request.POST.get('first_name') or request.POST.get('firstName')
-        last_name  = request.POST.get('last_name')  or request.POST.get('lastName')
-        email      = request.POST.get('email')
-        phone      = request.POST.get('phone')      or request.POST.get('phone_number')
-        company    = request.POST.get('company')    or request.POST.get('company_name')
-        message    = request.POST.get('message')    or request.POST.get('text')
+        # Ma'lumotlarni olish
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        company = request.POST.get('company')
+        message = request.POST.get('message')
 
-        # DEBUG: server konsolga POST ichini ko'rsat (keyin olib tashla)
-        print("CONTACT POST:", request.POST)
+        print(f"DEBUG: {first_name}, {last_name}, {email}, {phone}, {company}, {message}")
 
-        # minimal validatsiya
+        # Validatsiya
         if not first_name or not last_name or not email or not message:
             return JsonResponse({
                 "success": False,
-                "error": "Required fields missing",
-                "received": dict(request.POST)
-            }, status=400)
+                "error": "Barcha kerakli maydonlarni to'ldiring"
+            })
 
+        # Ma'lumotlarni saqlash
         contact = Contact.objects.create(
             first_name=first_name,
             last_name=last_name,
@@ -57,11 +56,11 @@ def contact_view(request):
             text=message
         )
 
-        # Telegram yuborish (TOKENni environment dan oling — xavfsizlik uchun)
+        # Telegramga yuborish
         BOT_TOKEN = "7496528180:AAGkAUPuZV3QCsd1svipSL6gcnC0x1sghlA"
         CHAT_ID = "5515940993"
         text = (
-            f"📩 *Yangi murojaat keldi!*\n\n"
+            f"📩 *Yangi murojaat!*\n\n"
             f"👤 Ism: {first_name} {last_name}\n"
             f"📧 Email: {email}\n"
             f"📞 Telefon: {phone}\n"
@@ -70,13 +69,27 @@ def contact_view(request):
         )
 
         try:
-            requests.post(
+            response = requests.post(
                 f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-                data={"chat_id": CHAT_ID, "text": text, "parse_mode": "Markdown"}
+                data={
+                    "chat_id": CHAT_ID, 
+                    "text": text, 
+                    "parse_mode": "Markdown"
+                },
+                timeout=10
             )
+            print(f"Telegram status: {response.status_code}")
+            print(f"Telegram response: {response.text}")
         except Exception as e:
-            print("Telegram error:", e)
+            print(f"Telegram xatosi: {e}")
 
+        # JSON response qaytarish
+        return JsonResponse({
+            "success": True,
+            "message": "Xabaringiz muvaffaqiyatli yuborildi!"
+        })
+
+    # GET so'rovi uchun
     blogs = Blog.objects.all().order_by('-created_at')[:3]
     faqs = FAQ.objects.all()
     clients = Client.objects.all()

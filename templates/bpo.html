@@ -5,8 +5,9 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>IT Visa | Navoi Region</title>
+	<title>BPO | Navoi Region</title>
 	<link rel="stylesheet" href="{% static 'assets/css/why.css' %}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<style>
 		/* === GLOBAL RESET === */
@@ -640,6 +641,7 @@
 				flex-direction: column;
 				background: var(--white);
 				text-align: left;
+				text-align: right;
 				padding: 100px 30px 30px;
 				gap: 20px;
 				transition: var(--transition);
@@ -743,9 +745,8 @@
 					<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
 					<li><a href="{% url 'bpo' %}">BPO</a></li>
 					<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
+					<a href="{% url 'home' %}#contact-form" class="btn"><i class="fas fa-phone"></i> Contact us</a>
 				</ul>
-
-				<a href="#" class="btn">Contact us</a>
 
 				<div class="hamburger" id="hamburger">
 					<span></span>
@@ -756,16 +757,17 @@
 		</div>
 	</header>
 
+   {% block content %}
+      
 	<!-- ===== HERO SECTION ===== -->
 	<section class="hero">
 		<div class="container">
 			<div class="hero-content">
-				<h1>IT Visa for Uzbekistan</h1>
-				<p>
+				<h1>Outsource logistics services to Uzbekistan</h1>
+				{% comment %} <p>
 					A resident company is eligible to apply for IT Visas that are provided to its founders, investors, and
 					employees. It is valid for 3 years and allows to work in Uzbekistan without a work permit.
-				</p>
-				<center><a href="#" class="btn">Apply Now</a></center>
+				</p> {% endcomment %}
 			</div>
 		</div>
 	</section>
@@ -812,28 +814,28 @@
 			</div>
 			<div class="service-grid">
 				<div class="service-item">
-					<img src="{% static 'img/callcenter.jpg' %}" alt="Call Center">
-					<p>Contact/Call Center</p>
+					<img src="{% static 'assets/media/images/service-1.png' %}" alt="Call Center" onerror="this.src='https://via.placeholder.com/300x200/3B82F6/FFFFFF?text=Call+Center'">
+					<p>Dispatching Services</p>
 				</div>
 				<div class="service-item">
-					<img src="{% static 'img/backoffice.jpg' %}" alt="Back Office">
-					<p>Back & Core Office</p>
+					<img src="{% static 'assets/media/images/service-2.png' %}" alt="Back Office" onerror="this.src='https://via.placeholder.com/300x200/10B981/FFFFFF?text=Back+Office'">
+					<p>Safety and Compliance</p>
 				</div>
 				<div class="service-item">
-					<img src="{% static 'img/it.jpg' %}" alt="IT Services">
-					<p>IT & Network</p>
+					<img src="{% static 'assets/media/images/service-3.png' %}" alt="IT Services" onerror="this.src='https://via.placeholder.com/300x200/8B5CF6/FFFFFF?text=IT+Services'">
+					<p>Fleet Management Support</p>
 				</div>
 				<div class="service-item">
-					<img src="{% static 'img/accounting.jpg' %}" alt="Accounting">
-					<p>Accounting & Back Office Support</p>
+					<img src="{% static 'assets/media/images/service-4.png' %}" alt="Accounting" onerror="this.src='https://via.placeholder.com/300x200/F59E0B/FFFFFF?text=Accounting'">
+					<p>HR & Recruiting</p>
 				</div>
 				<div class="service-item">
-					<img src="{% static 'img/development.jpg' %}" alt="Software Development">
-					<p>Software Development</p>
+					<img src="{% static 'assets/media/images/service-5.png' %}" alt="Software Development" onerror="this.src='https://via.placeholder.com/300x200/EF4444/FFFFFF?text=Development'">
+					<p>Accounting & Back-Office Support</p>
 				</div>
 				<div class="service-item">
-					<img src="{% static 'img/customer.jpg' %}" alt="Customer Support">
-					<p>Customer Support</p>
+					<img src="{% static 'assets/media/images/service-6.png' %}" alt="Customer Support" onerror="this.src='https://via.placeholder.com/300x200/06B6D4/FFFFFF?text=Customer+Support'">
+					<p>Customer Service</p>
 				</div>
 			</div>
 		</div>
@@ -899,6 +901,9 @@
 				<img src="{% static 'assets/media/logo-navoi.png' %}" alt="Navoi Region Logo">
 				<h4>NAVOI REGIONAL GOVERNMENT</h4>
 				<p>Promoting economic growth and international business opportunities in the Navoi region of Uzbekistan through innovative initiatives and strategic partnerships.</p>
+				<p>Promoting economic growth and international business opportunities in the Navoi region of Uzbekistan through
+					innovative initiatives and strategic partnerships.</p>
+
 			</div>
 
 			<div class="footer-column footer-links">
@@ -914,6 +919,8 @@
 			<div class="footer-column footer-signup">
 				<h4>Sign-Up For Updates</h4>
 				<p>Stay informed about the latest opportunities, news, and developments in the Navoi region. Join our newsletter for regular updates.</p>
+				<p>Stay informed about the latest opportunities, news, and developments in the Navoi region. Join our newsletter
+					for regular updates.</p>
 				<a href="#" class="btn">Subscribe</a>
 			</div>
 		</div>
@@ -934,8 +941,8 @@
 			hamburger.classList.toggle('open')
 			navLinks.classList.toggle('active')
 		});
-
-		// Navbar scroll effect
+// Navbar scroll effect
+		
 		window.addEventListener('scroll', () => {
 			if (window.scrollY > 50) {
 				navbar.classList.add('scrolled')
@@ -945,5 +952,7 @@
 		});
 	</script>
 </body>
-
+	</script>
+   {% endblock %}
+</body>
 </html>

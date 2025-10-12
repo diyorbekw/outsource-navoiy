@@ -20,12 +20,94 @@
     <link rel="stylesheet" href="{% static 'assets/css/vendor/slick-theme.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/app.css' %}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- FontAwesome ni qo'shing -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Success Message Styles -->
+    <style>
+    /* Success message style */
+    .success-message {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: linear-gradient(135deg, #28a745, #20c997);
+        color: #fff;
+        padding: 20px 30px;
+        border-radius: 12px;
+        font-size: 18px;
+        font-weight: 600;
+        box-shadow: 0 8px 30px rgba(40, 167, 69, 0.3);
+        z-index: 9999;
+        opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        max-width: 400px;
+        border-left: 5px solid rgba(255, 255, 255, 0.5);
+        display: none;
+    }
+
+    .success-message.show {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .success-message i {
+        font-size: 24px;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .success-message .message-text {
+        flex-grow: 1;
+    }
+
+    .success-message .close-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .success-message .close-btn:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.1);
+    }
+
+        #nav-contact {
+            width: 200px;
+            height: 50px;
+            background-color: #062241bb;
+            color: white;
+            display: flex;
+            gap: 5px;
+            display: inline-block;
+            text-align: center;
+            padding-top: 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+        #nav-contact:hover {
+            background-color:#062241bb;
+        }
+    </style>
 </head>
 
 <body>
     <!-- Main Wrapper Start -->
+    <header class="header">
     <div>
-        <header class="header">
             <!-- HEADER MENU START -->
             <div class="container-fluid">
                 <nav class="navigation d-flex align-items-center justify-content-between">
@@ -34,19 +116,16 @@
                     </a>
                     <div class="menu-button-right">
                         <div class="main-menu__nav">
-                            <ul class="main-menu__list">
+                            <ul class="main-menu__list" >
                                 <li><a href="{% url 'why' %}" id="nav-why">Why Navoi?</a></li>
                                 <li>
                                     <a href="{% url 'explore' %}" id="nav-explore">Explore opportunities</a>
                                 </li>
                                 <li><a href="{% url 'bpo' %}" id="nav-bpo">BPO</a></li>
                                 <li><a href="{% url 'it-visa' %}" id="nav-visa">IT Visa</a></li>
+                                <li><a href="#contact-form" id="nav-contact"><i class="fas fa-phone"></i> Contact us</a></li>
                             </ul>
                         </div>
-                    </div>
-                    <div class="main-menu__right d-flex align-items-center">
-                        <!-- Til tanlash -->
-
                     </div>
 
                     <a href="#" class="d-xl-none d-flex main-menu__toggler mobile-nav__toggler">
@@ -63,10 +142,10 @@
                     <div class="col-lg-12 order-sm-2 order-1">
                         <div class="hero-main-block text-center">
                             <div class="mb-72">
-                                <h1 class="white fw-700 mb-24">
+                                <h1 class="white fw-700 mb-24" style="font-size: 48px; font-weight:900;">
                                     Smart Outsourcing Starts in Uzbekistan
                                 </h1>
-                                <h5 class="mb-72">
+                                <h5 class="mb-72" style="font-size: 30px; font-weight:900">
                                     The Republic of Uzbekistan <br />Navoi Region
                                 </h5>
                             </div>
@@ -78,15 +157,23 @@
                         <div class="first-block">
                             <div class="sub-block currency-box">
                                 <div class="content-box">
-                                    <p class="font-sec white fw-500 mb-12">
-                                        BENEFITS FOR IT COMPANIES:
+                                    <p class="fw-500 mb-12" style="font-size: 19px; font-weight:1000; color:rgb(255, 255, 255);">
+                                        <u>BENEFITS FOR IT COMPANIES:</u>
                                     </p>
-                                    <p class="white fw-500 mb-12">0% CORPORATE TAXES</p>
-                                    <p class="white fw-500 mb-12">0% SOCIAL TAX</p>
-                                    <p class="white fw-500 mb-12">0% PROPERTY & LAND TAX</p>
-                                    <p class="white fw-500 mb-12">NO VAAT ON IMPORTED TAX</p>
-                                    <p class="white fw-500 mb-12">5% TAX ON DIVIDENDS</p>
-                                    <p class="white fw-500 mb-12">7.5% PERSONAL INCOME TAX</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">0% CORPORATE
+                                        TAXES</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">0% SOCIAL
+                                        TAX</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">0% PROPERTY
+                                        & LAND TAX</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">NO VAAT ON
+                                        IMPORTED TAX</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">5% TAX ON
+                                        DIVIDENDS</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">7.5%
+                                        PERSONAL INCOME TAX</p>
+                                    <p class="font-sec white fw-500 mb-12" style="font-size: 20px; font-weight:900;">
+                                    + Virtual Office</p>
                                 </div>
                             </div>
                         </div>
@@ -96,19 +183,25 @@
                         <div class="first-block v2">
                             <div class="sub-block currency-box">
                                 <div class="content-box">
-                                    <p class="font-sec white fw-500 mb-12">
-                                        ELIGIBLE COMPANIES:
+                                    <p class="font-sec white fw-500 mb-12" style="font-size: 18px; font-weight:900;">
+                                        <u>ELIGIBLE COMPANIES:</u>
                                     </p>
-                                    <p class="white fw-500 mb-12">SOFTWARE DEVELOPMENT</p>
-                                    <p class="white fw-500 mb-12">
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">SOFTWARE
+                                        DEVELOPMENT</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">
                                         BUSINESS PROCESS OUTSOURCING
                                     </p>
-                                    <p class="white fw-500 mb-12">HIGH_TECH SOLUTIONS</p>
-                                    <p class="white fw-500 mb-12">CREATIVE & MULTIMEDIA</p>
-                                    <p class="white fw-500 mb-12">
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">HIGH_TECH
+                                        SOLUTIONS</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">CREATIVE &
+                                        MULTIMEDIA</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">
                                         STARTUP & VENTURE SUPPORT
                                     </p>
-                                    <p class="white fw-500 mb-12">EDUCATION & TRAINING</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">EDUCATION &
+                                        TRAINING</p>
+                                    <p class="white fw-500 mb-12" style="font-size: 18px; font-weight:900;">FINANCIAL & 
+                                        ACCOUNTING SERVICES</p>
                                 </div>
                             </div>
                         </div>
@@ -129,39 +222,45 @@
                         <div class="d-sm-flex align-items-center justify-content-between">
                             <img src="{% static 'assets/media/map.png' %}" alt="" class="img-fluid" />
 
-                            <img src="{% static 'assets/media/vector/dotted-line.png' %}" alt="" class="d-sm-block d-none" />
+                            <img src="{% static 'assets/media/vector/dotted-line.png' %}" alt=""
+                                class="d-sm-block d-none" />
                             <img src="{% static 'assets/media/vector/dotted-line-hr.png' %}" alt=""
                                 class="d-sm-none d-block mt-sm-0 mt-24" />
                         </div>
                     </div>
                     <div class="col-lg-6 px-4">
-                        <h2 class="h1 black fw-500 mb-24 text-center">
+                        <h2 class="h1 black fw-500 mb-24 text-center" style="font-size: 37px; font-weight:900;">
                             About Navoi Region
                         </h2>
                         <div class="about-nv mb-24">
-                            <p>
-                                <strong>Navoi Region</strong> is strategically located in
+                            <p style="font-size: 20px; font-weight:600;">
+                                <strong style="font-size: 20px; font-weight:900;">Navoi Region</strong> is strategically
+                                located in
                                 the central part of Uzbekistan, offering easy access to
-                                major cities like <strong>Samarkand and Bukhara</strong>.
+                                major cities like <strong style="font-size: 20px; font-weight:900;">Samarkand and
+                                    Bukhara</strong>.
                             </p>
                             <br />
 
-                            <p>
-                                With a <strong>population of over 1 million</strong>, the
+                            <p style="font-size: 20px; font-weight:600;">
+                                With a <strong style="font-size: 20px; font-weight:900;">population of over 1
+                                    million</strong>, the
                                 region is known for its industrial potential and
-                                <strong>rich natural resources</strong>, including gold,
+                                <strong style="font-size: 20px; font-weight:900;">rich natural resources</strong>,
+                                including gold,
                                 gas, and rare minerals.
                             </p>
                         </div>
                         <div class="about-nv">
-                            <p>
-                                The region hosts <strong>5 universities</strong> that
+                            <p style="font-size: 20px; font-weight:600;">
+                                The region hosts <strong style="font-size: 20px; font-weight:900;">5
+                                    universities</strong> that
                                 specialize in engineering, IT, and business, and foreign
                                 languages providing a steady pipeline of skilled talent.
                             </p>
                             <br />
 
-                            <p>
+                            <p style="font-size: 20px; font-weight:600;">
                                 Uzbek and Russian are widely spoken, and English proficiency
                                 is growing rapidly among young professionals, making Navoi
                                 an attractive destination for international companies.
@@ -266,23 +365,23 @@
         </div>
     </section>
     <section class="stats-section">
-        <h2 class="section-title">Success in Numbers</h2>
+        <h2 class="section-title" style="font-size: 45px; font-weight:700;">Success in Numbers</h2>
         <div class="stats-grid">
             <div class="stat-card">
-                <p class="stat-label">RESIDENT COMPANIES</p>
-                <h3 class="stat-value">50+</h3>
+                <p class="stat-label" style="font-size: 18px; font-weight:600;">RESIDENT COMPANIES</p>
+                <h3 class="stat-value" style="font-size: 40px; font-weight:900;">50+</h3>
             </div>
             <div class="stat-card">
-                <p class="stat-label">EXPORT REVENUE</p>
-                <h3 class="stat-value">4M+</h3>
+                <p class="stat-label" style="font-size: 18px; font-weight:600;">EXPORT REVENUE</p>
+                <h3 class="stat-value" style="font-size: 40px; font-weight:900;">4M+</h3>
             </div>
             <div class="stat-card">
-                <p class="stat-label">EXPORT DESTINATIONS</p>
-                <h3 class="stat-value">20+</h3>
+                <p class="stat-label" style="font-size: 18px; font-weight:600;">EXPORT DESTINATIONS</p>
+                <h3 class="stat-value" style="font-size: 40px; font-weight:900;">20+</h3>
             </div>
             <div class="stat-card">
-                <p class="stat-label">SKILLED SPECIALISTS</p>
-                <h3 class="stat-value">290+</h3>
+                <p class="stat-label" style="font-size: 18px; font-weight:600;">SKILLED SPECIALISTS</p>
+                <h3 class="stat-value" style="font-size: 40px; font-weight:900;">290+</h3>
             </div>
         </div>
     </section>
@@ -294,7 +393,7 @@
                     <div class="swiper-slide-2">
                         <div class="stars">
                             {% for i in ""|center:client.rating %}
-                                ★
+                            ★
                             {% endfor %}
                         </div>
                         <div class="quote-mark">❝</div>
@@ -323,15 +422,14 @@
     <section class="blog-section py-100">
         <div class="container">
             <div class="news-header">
-                <h2>News</h2>
-                <a href="#" class="see-all">See all →</a>
+                <h2 style="font-size: 40px; font-weight:900;">News</h2>
+                <a href="#" class="see-all" style="font-size: 20px; font-weight:900;">See all →</a>
             </div>
             <div class="row row-gap-4">
                 {% for blog in blogs %}
-                <div class="col-xl-4 col-lg-6 col-md-6 ">
-                    
-                    <div class="blog-card">
-                        
+                <div  class="col-xl-4 col-lg-6 col-md-6 ">
+
+                    <div class="blog-card" ">
                         <a href="#">
                             <div class="blog-image shine">
                                 <img src="{{ blog.image.url }}" class="w-100" alt=""
@@ -358,66 +456,98 @@
                             </div>
                         </a>
                     </div>
-                
+
                 </div>
                 {% endfor %}
             </div>
         </div>
     </section>
-  
+<br> <br> <br>
     <!-- Question Section End -->
 
     <!-- Contact Section Start -->
     <div class="wrap">
         <!-- chapda: Kontakt form -->
-        <aside class="form-card" aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Contact </h2>
-<form method="POST" action="{% url 'contact' %}">
-    {% csrf_token %}
-    <div class="grid-2">
-        <div class="field">
-            <label for="firstName">Firstname</label>
-            <input id="firstName" name="first_name" type="text" placeholder="Ismingiz" required />
-        </div>
+        <aside id="contact-form" class="form-card" aria-labelledby="contact-heading" style="margin-bottom: 20px; border:none;">
+            <form id="contactForm" method="POST" action="{% url 'contact' %}">
+                {% csrf_token %}
+                <div class="grid-2">
+                    <div class="field">
+                        <label for="firstName" style="font-size: 18px; font-weight:600;">Firstname</label>
+                        <div style="position: relative;">
+                            <input id="firstName" name="first_name" type="text" placeholder="Firstname" required
+                                style="padding-left: 40px; width: 100%;" />
+                            <i class="fas fa-user"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                        </div>
+                    </div>
 
-        <div class="field">
-            <label for="lastName">Lastname</label>
-            <input id="lastName" name="last_name" type="text" placeholder="Familyangiz" required />
-        </div>
-    </div>
+                    <div class="field">
+                        <label for="lastName" style="font-size: 18px; font-weight:600;">Lastname</label>
+                        <div style="position: relative;">
+                            <input id="lastName" name="last_name" type="text" placeholder="Lastname" required
+                                style="padding-left: 40px; width: 100%;" />
+                            <i class="fas fa-user"
+                                style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" placeholder="you@example.com" required />
-    </div>
+                <div class="field">
+                    <label for="company" style="font-size: 18px; font-weight:600;">Company name</label>
+                    <div style="position: relative;">
+                        <input id="company" name="company" type="text" placeholder="Company name (if any)"
+                            style="padding-left: 40px; width: 100%;" />
+                        <i class="fas fa-building"
+                            style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                    </div>
+                </div>
 
-    <div class="field">
-        <label for="phone">Phone number</label>
-        <input id="phone" name="phone" type="tel" placeholder="+998 99 123 45 67" />
-    </div>
+                <div class="field">
+                    <label for="email" style="font-size: 18px; font-weight:600;">Email</label>
+                    <div style="position: relative;">
+                        <input id="email" name="email" type="email" placeholder="you@example.com" required
+                            style="padding-left: 40px; width: 100%;" />
+                        <i class="fas fa-envelope"
+                            style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                    </div>
+                </div>
 
-    <div class="field">
-        <label for="company">Company name</label>
-        <input id="company" name="company" type="text" placeholder="Kompaniya nomi (agar mavjud bo'lsa)" />
-    </div>
+                <div class="field">
+                    <label for="phone" style="font-size: 18px; font-weight:600;">Phone number</label>
+                    <div style="position: relative;">
+                        <input id="phone" name="phone" type="tel" placeholder="+998 99 123 45 67"
+                            style="padding-left: 40px; width: 100%;" />
+                        <i class="fas fa-phone"
+                            style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+                    </div>
+                </div>
 
-    <div class="field">
-        <label for="message">Text</label>
-        <textarea id="message" name="message" placeholder="Xabaringizni yozing..." required></textarea>
-    </div>
+                <div class="field">
+                    <label for="message" style="font-size: 18px; font-weight:600;">Text</label>
+                    <div style="position: relative;">
+                        <textarea id="message" name="message" placeholder="Write your message..."
+                            style="width: 580px; height: 200px; resize: none; overflow-y: auto; padding-left: 40px;"
+                            required></textarea>
+                        <i class="fas fa-comment" style="position: absolute; left: 12px; top: 12px; color: #666;"></i>
+                    </div>
+                </div>
 
-    <div class="actions">
-        <button class="btn" type="submit">Submit</button>
-    </div>
-</form>
-
+                <div class="actions">
+                    <button class="btn" type="submit"
+                        style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Submit</span>
+                    </button>
+                </div>
+            </form>
         </aside>
 
-        <!-- o‘ngda: FAQ -->
+        <!-- o'ngda: FAQ -->
         <section class="faq-card" aria-labelledby="faq-heading">
             <div class="faq-title">
 
-                <h1 id="faq-heading">Frequently Asked Questions</h1>
+                <h1 id="faq-heading"  style="font-size: 40px; font-weight:600;">Frequently Asked Questions</h1>
             </div>
 
             <div class="faq-list" id="faqList">
@@ -434,6 +564,12 @@
         </section>
     </div>
 
+    <!-- SUCCESS MESSAGE -->
+<div id="successMessage" class="success-message">
+    <i class="fas fa-check-circle"></i>
+    <span class="message-text">Your message has been sent successfully!</span>
+    <button class="close-btn" onclick="hideSuccessMessage()">&times;</button>
+</div>
 
     <!-- Contact Section End -->
 
@@ -446,10 +582,6 @@
                         <a href="{% url 'home' %}">
                             <img src="{% static 'assets/media/logonavoi.png' %}" alt="" class="mb-24" />
                         </a>
-                        <p class="white mb-24">
-                            Lorem ipsum dolor sit amet consectetur. Ut elementum vitae
-                            bibendum mi arcu consectetur viverra accumsan felis pharetra.
-                        </p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-3">
@@ -471,8 +603,7 @@
                     <div class="newsletter-container text-sm-end">
                         <h6 class="white mb-24">Sign-Up For Updates</h6>
                         <p class="white mb-24">
-                            Etiam quis nunc et nulla nulla velit donec. Ac varius
-                            sollicitudin eget morbi varius nibh nunc dui ultrices.
+                            Sign up to receive the latest news and updates about Navoi Outsourcing.
                         </p>
                     </div>
                 </div>
@@ -492,7 +623,8 @@
         <div class="mobile-nav__content">
             <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
             <div class="logo-box">
-                <a href="index.html" aria-label="logo image"><img src="{% static 'assets/media/logonavoi.png' %}" alt="" /></a>
+                <a href="index.html" aria-label="logo image"><img src="{% static 'assets/media/logonavoi.png' %}"
+                        alt="" /></a>
             </div>
             <div class="mobile-nav__container"></div>
             <ul class="mobile-nav__contact list-unstyled">
@@ -517,7 +649,76 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
     <!-- Jquery Js -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
+<script>
+// Success message functionality
+const form = document.getElementById('contactForm');
+const successBox = document.getElementById('successMessage');
+
+form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    // Loading holatini ko'rsatish
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    submitBtn.disabled = true;
+
+    // Form ma'lumotlarini yig'ish
+    const formData = new FormData(form);
+    
+    // CSRF token qo'shish
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    // AJAX so'rovi
+    fetch("{% url 'contact' %}", {
+        method: "POST",
+        body: formData,
+        headers: {
+            "X-CSRFToken": csrftoken,
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            showSuccessMessage();
+            form.reset();
+        } else {
+            alert("Error: " + data.error);
+        }
+    })
+    .catch(error => {
+        console.error("Xatolik:", error);
+        alert("Xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.");
+    })
+    .finally(() => {
+        // Buttonni qayta tiklash
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    });
+});
+
+function showSuccessMessage() {
+    successBox.style.display = 'flex';
+    void successBox.offsetWidth;
+    successBox.classList.add('show');
+    
+    setTimeout(() => {
+        hideSuccessMessage();
+    }, 5000);
+}
+
+function hideSuccessMessage() {
+    successBox.classList.remove('show');
+    setTimeout(() => {
+        successBox.style.display = 'none';
+    }, 500);
+}
+
         // FAQ toggle
         document.querySelectorAll('.faq-q').forEach(function (q) {
             q.addEventListener('click', toggleFAQ)
@@ -539,33 +740,11 @@
             }
         }
 
-        // Form submit simulation
-        const form = document.getElementById('contactForm')
-        const successBox = document.getElementById('success')
-
-        form.addEventListener('submit', function (e) {
-            e.preventDefault()
-            const required = ['firstName', 'lastName', 'email', 'message']
-            let ok = true
-            required.forEach(id => {
-                const el = document.getElementById(id)
-                if (!el.value.trim()) {
-                    el.style.borderColor = '#ef4444'
-                    ok = false
-                } else {
-                    el.style.borderColor = '#e6edf8'
-                }
-            })
-            if (!ok) {
-                successBox.style.display = 'none'
-                return
-            }
-            successBox.style.display = 'block'
-        })
-
+        // Form validation
         document.querySelectorAll('input, textarea').forEach(el => {
             el.addEventListener('input', () => el.style.borderColor = '#e6edf8')
         })
+        
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 3,
             spaceBetween: 20,

@@ -5,589 +5,248 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>Why Navoi? | Navoi Regional Government</title>
+	<title>Why Navoi?</title>
 	<link rel="stylesheet" href="{% static 'assets/css/why.css' %}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/media/icons/removebg.png' %}" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
 	<style>
-		/* === GLOBAL STYLES === */
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		}
-
-		body {
-			background-color: #ffffff;
-			color: #333333;
-			line-height: 1.6;
-		}
-
-		.container {
-			max-width: 1200px;
-			margin: 0 auto;
-			padding: 0 20px;
-		}
-
-		/* === NAVBAR === */
-		.navbar {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 20px 0;
-			background: #fff;
-			border-bottom: 1px solid #eaeaea;
-			position: sticky;
-			top: 0;
-			z-index: 100;
-		}
-
-		.logo img {
-			width: 180px;
-			height: auto;
-		}
-
-		.nav-links {
-			display: flex;
-			align-items: center;
-			gap: 30px;
-			list-style: none;
-		}
-
-		.nav-links li a {
-			text-decoration: none;
-			color: #333;
-			font-weight: 500;
-			font-size: 16px;
-			transition: color 0.3s;
-		}
-
-		.nav-links li a:hover {
-			color: #0056b3;
-		}
-
-		.btn {
-			background: #1a365d;
-			color: #fff;
-			padding: 10px 24px;
-			border-radius: 4px;
-			text-decoration: none;
-			font-weight: 500;
-			transition: background 0.3s;
-		}
-
-		.btn:hover {
-			background: #2d4a7c;
-		}
-
-		.hamburger {
-			display: none;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			gap: 5px;
-			cursor: pointer;
-			width: 30px;
-			height: 24px;
-		}
-
-		.hamburger span {
-			display: block;
-			width: 100%;
-			height: 3px;
-			background: #333;
-			border-radius: 2px;
-			transition: all 0.3s;
-		}
-
-		/* === HERO SECTION === */
 		.hero {
-			background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("{% static 'assets/media/icons/12.jpg' %}") no-repeat center center/cover;
-			height: 60vh;
+			background: url("{% static 'assets/media/icons/12.jpg' %}") no-repeat center center/cover;
+			height: 90vh;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			position: relative;
+		}
+
+		.btn {
+			width: 200px;
+			height: 50px;
+			background-color: #062241bb;
 			color: white;
+			display: inline-block;
 			text-align: center;
-		}
-
-		.overlay h1 {
-			font-size: 48px;
+			padding-top: 5px;
+			border-radius: 10px;
 			font-weight: 600;
-			margin-bottom: 20px;
-			text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-		}
-
-		/* === EDUCATION & TALENT SECTION === */
-		.education-talent {
-			padding: 80px 0;
-			background: #f8f9fa;
-		}
-
-		.education-talent h2 {
-			font-size: 36px;
-			text-align: center;
-			margin-bottom: 20px;
-			color: #1a365d;
-			font-weight: 600;
-		}
-
-		.intro {
-			font-size: 18px;
-			text-align: center;
-			max-width: 800px;
-			margin: 0 auto 50px;
-			color: #555;
-			line-height: 1.8;
-		}
-
-		.info-card {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			gap: 30px;
-			margin-bottom: 40px;
-		}
-
-		.info-boxs {
-			display: flex;
-			align-items: center;
-			background: white;
-			padding: 25px;
-			border-radius: 8px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-			border-left: 4px solid #1a365d;
-		}
-
-		.info {
-			margin-right: 20px;
-		}
-
-		.info img {
-			width: 60px;
-			height: 60px;
-			border-radius: 50%;
-			object-fit: cover;
-		}
-
-		.info-text p {
-			font-size: 16px;
-			color: #333;
-			line-height: 1.6;
-		}
-
-		.info-text strong {
-			color: #1a365d;
-			font-weight: 600;
-		}
-
-		.summary {
-			font-size: 18px;
-			text-align: center;
-			max-width: 900px;
-			margin: 0 auto;
-			color: #555;
-			line-height: 1.8;
-			font-style: italic;
-			padding: 20px;
-			background: white;
-			border-radius: 8px;
-			box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-		}
-
-		/* === TABS SECTION === */
-		.tabs-nav {
-			padding: 80px 0;
-			background: white;
-		}
-
-		.tabs-nav h1 {
-			font-size: 36px;
-			text-align: center;
-			margin-bottom: 50px;
-			color: #1a365d;
-			font-weight: 600;
-		}
-
-		.tabs {
-			display: flex;
-			justify-content: center;
-			margin-bottom: 40px;
-			border-bottom: 1px solid #eaeaea;
-		}
-
-		.tab {
-			padding: 15px 30px;
-			cursor: pointer;
-			font-weight: 500;
-			color: #666;
-			border-bottom: 3px solid transparent;
-			transition: all 0.3s;
-		}
-
-		.tab.active {
-			color: #1a365d;
-			border-bottom: 3px solid #1a365d;
-		}
-
-		.tab:hover {
-			color: #1a365d;
-		}
-
-		.content-box {
-			display: flex;
-			align-items: center;
-			gap: 50px;
-			max-width: 1000px;
-			margin: 0 auto;
-		}
-
-		.content-text {
-			flex: 1;
-		}
-
-		.content-text p {
-			font-size: 18px;
-			margin-bottom: 20px;
-			color: #333;
-			line-height: 1.7;
-		}
-
-		.content-text ul {
-			padding-left: 20px;
-			margin-bottom: 20px;
-		}
-
-		.content-text li {
-			margin-bottom: 10px;
-			font-size: 16px;
-			color: #555;
-			line-height: 1.6;
-		}
-
-		.content-box img {
-			flex: 1;
-			max-width: 450px;
-			border-radius: 8px;
-			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-		}
-
-		/* === FOOTER === */
-		.footer {
-			background: #1a365d;
-			color: #fff;
-			padding: 60px 0 30px;
-		}
-
-		.footer .container {
-			display: flex;
-			justify-content: space-between;
-			flex-wrap: wrap;
-			gap: 40px;
-		}
-
-		.footer-column {
-			flex: 1;
-			min-width: 300px;
-		}
-
-		.footer-logo img {
-			width: 150px;
-			margin-bottom: 15px;
-		}
-
-		.footer h4 {
-			margin-bottom: 20px;
-			font-size: 18px;
-			font-weight: 600;
-		}
-
-		.footer p {
-			font-size: 15px;
-			line-height: 1.6;
-			color: #e2e8f0;
-			margin-bottom: 20px;
-		}
-
-		.footer-links ul {
-			list-style: none;
-		}
-
-		.footer-links li {
-			margin-bottom: 12px;
-		}
-
-		.footer-links a {
-			color: #e2e8f0;
 			text-decoration: none;
-			transition: color 0.3s;
+			transition: 0.3s ease;
 		}
 
-		.footer-links a:hover {
-			color: #fff;
-			text-decoration: underline;
+		.btn:hover {
+			background-color: #062241bb;
 		}
 
-		.footer-bottom {
-			text-align: center;
-			padding-top: 30px;
-			margin-top: 40px;
-			border-top: 1px solid rgba(255, 255, 255, 0.1);
-			color: #cbd5e0;
-			font-size: 14px;
-			width: 100%;
-		}
-
-		/* === RESPONSIVE DESIGN === */
-		@media (max-width: 1024px) {
-			.info-card {
-				grid-template-columns: 1fr;
-			}
-			
-			.content-box {
-				flex-direction: column;
-				text-align: center;
-			}
-			
-			.content-box img {
-				max-width: 100%;
-			}
-		}
-
-		@media (max-width: 768px) {
-			.nav-links {
-				display: none;
-			}
-			
-			.hamburger {
-				display: flex;
-			}
-			
-			.overlay h1 {
-				font-size: 36px;
-			}
-			
-			.tabs {
-				flex-direction: column;
-				align-items: center;
-			}
-			
-			.tab {
-				width: 100%;
-				text-align: center;
-				border-bottom: 1px solid #eaeaea;
-				border-left: none;
-			}
-			
-			.tab.active {
-				border-bottom: 3px solid #1a365d;
-				border-left: none;
-			}
-			
-			.footer .container {
-				flex-direction: column;
-				text-align: center;
-			}
-		}
-
-		@media (max-width: 480px) {
-			.overlay h1 {
-				font-size: 28px;
-			}
-			
-			.education-talent h2,
-			.tabs-nav h1 {
-				font-size: 28px;
-			}
-			
-			.info-boxs {
-				flex-direction: column;
-				text-align: center;
-			}
-			
-			.info {
-				margin-right: 0;
-				margin-bottom: 15px;
-			}
+		.nav-links li a {
+			font-weight: 600;
+			color: #333;
 		}
 	</style>
-</head>
+	<header class="navbar">
+		<div class="logo">
+			<a href="{% url 'home' %}">
+				<img src="{% static 'assets/Frame (1).png' %}" alt="logo" style="width: 150px; height: 60px;">
+			</a>
+		</div>
 
-<body>
-	<div class="container">
-		<header class="navbar">
-			<div class="logo">
-				<a href="{% url 'home' %}">
-					<img src="{% static 'assets/Frame (1).png' %}" alt="Navoi Region Logo">
-				</a>
-			</div>
+		<ul class="nav-links" id="navLinks" style="font-size: 22px; ">
+			<li><a href="{% url 'why' %}">Why Navoi?</a></li>
+			<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
+			<li><a href="{% url 'bpo' %}">BPO</a></li>
+			<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
+			<a href="{% url 'home' %}#contact-form" class="btn">
+				<i class="fas fa-phone"></i> Contact us
+			</a>
 
-			<ul class="nav-links" id="navLinks">
-				<li><a href="{% url 'why' %}">Why Navoi?</a></li>
-				<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
-				<li><a href="{% url 'bpo' %}">BPO</a></li>
-				<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
-			</ul>
+		</ul>
 
-			<a href="#" class="btn">Contact us</a>
 
-			<div class="hamburger" id="hamburger">
-				<span></span>
-				<span></span>
-				<span></span>
-			</div>
-		</header>
-	</div>
+		<div class="hamburger" id="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</header>
 
 	<section class="hero">
 		<div class="overlay">
-			<h1>Why Navoi?</h1>
+			<h1 style="font-size: 55px; font-weight:600;">Why Navoi?</h1>
 		</div>
 	</section>
 
-	<div class="container">
-		<section class="education-talent">
-			<h2>Education & Talent Development</h2>
-			<p class="intro">
-				Navoi Region is home to a fast-growing pool of skilled and multilingual talent — an essential asset for
-				international BPO companies
-			</p>
-			<div class="info-card">
-				<div class="info-boxs">
-					<div class="info">
-						<img src="{% static 'assets/media/images/7.jpg' %}" alt="Youth population">
-					</div>
-					<div class="info-text">
-						<p><strong>60%</strong> of the population is under the age of 35</p>
-					</div>
+	<section class="education-talent">
+		<h2 style="font-size: 50px; font-weight:900;">Education & Talent Development</h2>
+		<p class="intro">
+			Navoi Region is home to a fast-growing pool of skilled and multilingual talent — an essential asset for
+			international BPO companies
+		</p>
+		<div class="info-card">
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
 				</div>
-
-				<div class="info-boxs">
-					<div class="info">
-						<img src="{% static 'assets/media/images/7.jpg' %}" alt="Universities">
-					</div>
-					<div class="info-text">
-						<p><strong>5 universities</strong> specializing in IT, foreign languages, and engineering</p>
-					</div>
-				</div>
-
-				<div class="info-boxs">
-					<div class="info">
-						<img src="{% static 'assets/media/images/7.jpg' %}" alt="Language skills">
-					</div>
-					<div class="info-text">
-						<p>Over <strong>200K+</strong> people speak English, while <strong>500K+</strong> are fluent in Russian</p>
-					</div>
-				</div>
-
-				<div class="info-boxs">
-					<div class="info">
-						<img src="{% static 'assets/media/images/7.jpg' %}" alt="Students">
-					</div>
-					<div class="info-text">
-						<p><strong>12K+</strong> university students, including <strong>3,000+</strong> in IT, business, and tech
-							disciplines</p>
-					</div>
-				</div>
-
-				<div class="info-boxs">
-					<div class="info">
-						<img src="{% static 'assets/media/images/7.jpg' %}" alt="English education">
-					</div>
-					<div class="info-text">
-						<p>Strong focus on <strong>English language education</strong></p>
-					</div>
-				</div>
-
-				<div class="info-boxs">
-					<div class="info">
-						<img src="{% static 'assets/media/images/7.jpg' %}" alt="Innovation culture">
-					</div>
-					<div class="info-text">
-						<p>Regular hackathons, and coding competitions foster early innovation culture</p>
-					</div>
+				<div class="info-text">
+					<p><strong>60%</strong> of the population is under the age of 35</p>
 				</div>
 			</div>
-			<p class="summary">
-				With this combination of youth, education, and language proficiency, Navoi is positioned as a reliable hub for
-				global digital services and BPO.
-			</p>
-		</section>
 
-		<section class="tabs-nav">
-			<h1>Special Economic Zones, Industrial Ecosystem and Government Support</h1>
-			<div class="tabs">
-				<div class="tab active">Green Energy Potential</div>
-				<div class="tab">Free Economic Zones (FEZ)</div>
-				<div class="tab">Industrial Ecosystem</div>
-				<div class="tab">Strategic Location</div>
-			</div>
-			<div class="content-box">
-				<div class="content-text">
-					<p>The region is a leader in Uzbekistan's green energy strategy, with:</p>
-					<ul>
-						<li>Large-scale solar and wind power plants already in operation</li>
-						<li>High potential for green data centers and eco-friendly IT infrastructure</li>
-					</ul>
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
 				</div>
-				<img src="{% static 'assets/media/images/7.jpg' %}" alt="Green Energy in Navoi">
+				<div class="info-text">
+					<p><strong>5 universities</strong> specializing in IT, foreign languages, and engineering</p>
+				</div>
 			</div>
-		</section>
-	</div>
 
-	<footer class="footer">
-		<div class="container">
-			<div class="footer-column footer-logo">
-				<img src="{% static 'assets/media/logo-navoi.png' %}" alt="Navoi Regional Government Logo">
-				<h4>NAVOI REGIONAL GOVERNMENT</h4>
-				<p>Promoting economic growth and development in the Navoi region through strategic initiatives and international partnerships.</p>
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p>Over <strong>200K+</strong> people speak English, while <strong>500K+</strong> are fluent in Russian</p>
+				</div>
 			</div>
-			<div class="footer-column footer-links">
-				<h4>Quick Links</h4>
-				<ul>
-					<li><a href="{% url 'why' %}">Why Navoi?</a></li>
-					<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
-					<li><a href="{% url 'bpo' %}">BPO</a></li>
-					<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
-				</ul>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p><strong>12K+</strong> university students, including <strong>3,000+</strong> in IT, business, and tech
+						disciplines</p>
+				</div>
 			</div>
-			<div class="footer-column footer-signup">
-				<h4>Sign-Up For Updates</h4>
-				<p>Stay informed about the latest developments and opportunities in the Navoi region. Subscribe to our newsletter for regular updates.</p>
-				<a href="#" class="btn" style="background: #2d4a7c; display: inline-block; margin-top: 10px;">Subscribe</a>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p>Strong focus on <strong>English language education</strong></p>
+				</div>
 			</div>
-			<div class="footer-bottom">
-				<p>&copy; 2023 Navoi Regional Government. All rights reserved.</p>
+
+			<div class="info-boxs">
+				<div class="info">
+					<img src="{% static 'assets/media/images/7.jpg' %}" alt="">
+				</div>
+				<div class="info-text">
+					<p>Regular hackathons, and coding competitions foster early innovation culture</p>
+				</div>
 			</div>
 		</div>
-	</footer>
+		<p class="summary">
+			With this combination of youth, education, and language proficiency, Navoi is positioned as a reliable hub for global digital services and BPO.
+		</p>
+	</section>
+	<div class="tabs-nav">
+		<h1>Special Economic Zones, Industrial Ecosystem and Government Support</h1>
+		<div class="tabs">
+			<div class="tab active" data-tab="green" >Green Energy Potential</div>
+			<div class="tab" data-tab="fez">Free Economic Zones (FEZ)</div>
+			<div class="tab" data-tab="eco">Industrial Ecosystem</div>
+			<div class="tab" data-tab="loc">Strategic Location</div>
+		</div>
+		<div class="content-box">
+			<div class="content-text" id="tab-text">
+				<p>The region is a leader in Uzbekistan's green energy strategy, with:</p>
+				<ul>
+					<li>Large-scale solar and wind power plants already in operation</li>
+					<li>High potential for green data centers and eco-friendly IT infrastructure</li>
+				</ul>
+			</div>
+			<img id="tab-image" src="{% static 'assets/media/images/7.jpg' %}" alt="Uzbekistan Map">
+		</div>
 
+	</div>
+	<footer class="footer"> <!-- Chap -->
+		<div class="footer-column footer-logo">
+			<img src="{% static 'assets/media/logo-navoi.png' %}" alt="Logo">
+		</div> <!-- O'rta -->
+		<div class="footer-column footer-links">
+			<h4>Quick Links</h4>
+			<ul>
+				<li><a href="#">Why Navoi?</a></li>
+				<li><a href="#">Explore opportunities</a></li>
+				<li><a href="#">BPO</a></li>
+				<li><a href="#">IT Visa</a></li>
+			</ul>
+		</div> <!-- O'ng -->
+		<div class="footer-column footer-signup">
+			<h4 style='color: white;'>Sign-Up For Updates</h4>
+			<p>Sign up to receive the latest news and updates about Navoi Outsourcing.
+			</p>
+		</div>
+	</footer>
 	<script>
-		// Simple tab functionality
-		document.addEventListener('DOMContentLoaded', function() {
-			const tabs = document.querySelectorAll('.tab');
-			const contentBox = document.querySelector('.content-box');
-			
-			tabs.forEach(tab => {
-				tab.addEventListener('click', function() {
-					// Remove active class from all tabs
-					tabs.forEach(t => t.classList.remove('active'));
-					
-					// Add active class to clicked tab
-					this.classList.add('active');
-					
-					// In a real implementation, you would update content based on the tab
-				});
-			});
-			
-			// Hamburger menu functionality
-			const hamburger = document.getElementById('hamburger');
-			const navLinks = document.getElementById('navLinks');
-			
-			hamburger.addEventListener('click', function() {
-				navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-			});
+		const tabs = document.querySelectorAll('.tab')
+		const text = document.getElementById('tab-text')
+		const image = document.getElementById('tab-image')
+
+		const content = {
+			green: {
+				text: `
+      <p>The region is a leader in Uzbekistan's green energy strategy, with:</p>
+      <ul>
+        <li>Large-scale solar and wind power plants already in operation</li>
+        <li>High potential for green data centers and eco-friendly IT infrastructure</li>
+      </ul>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			},
+			fez: {
+				text: `
+      <p>Navoi FEZ offers preferential conditions for foreign investors, including:</p>
+      <ul>
+        <li>Tax and customs incentives</li>
+        <li>Simplified regulations</li>
+        <li>Access to fully equipped industrial facilities</li>
+      </ul>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			},
+			eco: {
+				text: `
+      <p>Navoi is an industrial powerhouse — hosting leading enterprises such as:</p>
+      <ul>
+        <li>NMMC (Navoi Mining and Metallurgical Company)</li>
+        <li>NavoiAzot (chemical production)</li>
+        <li>Navoiuran (uranium mining)</li>
+      </ul>
+      <p>These companies are actively seeking digital transformation, creating demand for local IT services,
+      automation, and custom software solutions.</p>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			},
+			loc: {
+				text: `
+      <p>Located in the heart of Uzbekistan, Navoi Region offers direct access to major cities like Samarkand and Bukhara.
+      The region is home to one of the country’s largest cargo airports and a state-of-the-art logistics hub,
+      making it a natural gateway for trade and IT-enabled services across Central Asia.</p>
+    `,
+				img: "{% static 'assets/media/images/7.jpg' %}"
+			}
+		}
+
+		tabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				// active class o‘zgartirish
+				tabs.forEach(t => t.classList.remove('active'))
+				tab.classList.add('active')
+
+				// content yangilash
+				const key = tab.getAttribute('data-tab')
+				text.innerHTML = content[key].text
+				image.src = content[key].img
+			})
 		});
 	</script>
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>

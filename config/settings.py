@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1"]
 
+ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1", "localhost"]
+
 
 # Application definition
 

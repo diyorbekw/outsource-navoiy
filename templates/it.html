@@ -1,477 +1,363 @@
-{% load static %}
+{% extends "base.html" %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>IT Visa</title>
-	<link rel="stylesheet" href="{% static 'assets/css/why.css' %}" />
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
-			font-family: "Poppins", sans-serif;
-		}
-
-		body {
-			background-color: #ffffff;
-			color: #333;
-			line-height: 1.6;
-		}
-
-		/* === NAVBAR === */
-		.navbar {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 16px 64px;
-			background: #fff;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-			position: sticky;
-			top: 0;
-			z-index: 100;
-		}
-
-		.logo img {
-			width: 150px;
-			height: 60px;
-			object-fit: contain;
-		}
-
-		.nav-links {
-			display: flex;
-			align-items: center;
-			gap: 24px;
-			list-style: none;
-			transition: all 0.4s ease-in-out;
-		}
-
-		.nav-links li a {
-			text-decoration: none;
-			color: #333;
-			font-weight: 500;
-			transition: color 0.3s;
-		}
-
-		.nav-links li a:hover {
-			color: #2563eb;
-		}
-
-		.btn {
-			background: #1a1a1a;
-			color: #fff;
-			padding: 8px 20px;
-			border-radius: 6px;
-			text-decoration: none;
-			transition: 0.3s;
-		}
-
-		.btn:hover {
-			background: #0056b3;
-		}
-
-		/* === HAMBURGER MENU === */
-		.hamburger {
-			display: none;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			gap: 5px;
-			cursor: pointer;
-			width: 30px;
-			height: 24px;
-			transition: transform 0.3s ease-in-out;
-		}
-
-		.hamburger span {
-			display: block;
-			width: 100%;
-			height: 3px;
-			background: #333;
-			border-radius: 2px;
-			transition: all 0.4s ease-in-out;
-		}
-
-		.hamburger.open span:nth-child(1) {
-			transform: translateY(9px) rotate(45deg);
-		}
-
-		.hamburger.open span:nth-child(2) {
-			opacity: 0;
-		}
-
-		.hamburger.open span:nth-child(3) {
-			transform: translateY(-9px) rotate(-45deg);
-		}
-
-		/* === HERO SECTION === */
-		.hero {
-			background: url("{% static 'assets/media/images/63f02ff0cf19e90057f797ce40ffcc2cbc8bded8.png' %}") no-repeat center center/cover;
-			height: 70vh;
-			display: flex;
-			align-items: flex-start;
-			padding: 80px 80px;
-			position: relative;
-		}
-
-		.hero .overlays {
-			background: rgba(255, 255, 255, 0.15);
-			border-radius: 20px;
-			backdrop-filter: blur(10px);
-			-webkit-backdrop-filter: blur(10px);
-			border: 1px solid rgba(255, 255, 255, 0.3);
-			padding: 20px;
-			max-width: 400px;
-			text-align: center;
-			color: #fff;
-			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-		}
-
-		.hero .overlays h1 {
-			font-size: 48px;
-			font-weight: 700;
-			margin-bottom: 20px;
-		}
-
-		.hero .overlays p {
-			font-size: 18px;
-			line-height: 1.4;
-		}
-
-		/* === RISK SECTION === */
-		.risk-section {
-			background: #f8f9fa;
-			padding: 40px 10px;
-			text-align: center;
-		}
-
-		.risk-cards {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-wrap: wrap;
-			gap: 30px;
-			max-width: 1100px;
-			margin: 20px auto 0;
-		}
-
-		.risk-card {
-			background: white;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			gap: 10px;
-			text-transform: uppercase;
-			border-radius: 10px;
-			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-			padding: 20px;
-			flex: 1 1 250px;
-			text-align: left;
-		}
-
-		.risk-card img {
-			width: 50px;
-			height: 50px;
-		}
-
-		.risk-card p {
-			font-size: 14px;
-			color: #333;
-		}
-
-		/* === VISA SECTION === */
-		.visa-section {
-			text-align: center;
-			padding: 60px 20px;
-			border-radius: 8px;
-			max-width: 1200px;
-			margin: 40px auto;
-		}
-
-		.visa-section h2 {
-			font-size: 28px;
-			margin-bottom: 40px;
-			font-weight: 600;
-		}
-
-		.visa-cards {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			gap: 40px;
-		}
-
-		.visa-card {
-			background-color: #fff;
-			border-radius: 10px;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-			padding: 25px;
-			width: 320px;
-			text-align: center;
-			transition: transform 0.3s;
-		}
-
-		.visa-card:hover {
-			transform: translateY(-8px);
-		}
-
-		.icon img {
-			width: 80px;
-			height: 80px;
-			margin-bottom: 15px;
-		}
-
-		.visa-card h3 {
-			font-size: 18px;
-			margin-bottom: 15px;
-			font-weight: 600;
-		}
-
-		.visa-card p {
-			font-size: 14px;
-			line-height: 1.6;
-			text-align: justify;
-			color: #333;
-		}
-
-		/* === FOOTER === */
-		.footer {
-			background: #1a1a1a;
-			color: #fff;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			gap: 30px;
-			padding: 50px 60px;
-		}
-
-		.footer-column {
-			flex: 1 1 300px;
-		}
-
-		.footer-logo img {
-			width: 120px;
-			margin-bottom: 10px;
-		}
-
-		.footer h4 {
-			margin-bottom: 15px;
-			font-size: 18px;
-		}
-
-		.footer p {
-			font-size: 14px;
-			line-height: 1.6;
-			color: #ddd;
-		}
-
-		.footer-links ul {
-			list-style: none;
-		}
-
-		.footer-links li {
-			margin-bottom: 8px;
-		}
-
-		.footer-links a {
-			color: #ddd;
-			text-decoration: none;
-			transition: 0.3s;
-		}
-
-		.footer-links a:hover {
-			color: #8cd18c;
-		}
-
-		/* === RESPONSIVE DESIGN === */
-		@media (max-width: 1024px) {
-			.navbar {
-				padding: 16px 32px;
-			}
-		}
-
-		@media (max-width: 768px) {
-			.hamburger {
-				display: flex;
-			}
-
-			.nav-links {
-				position: absolute;
-				top: 100%;
-				left: 0;
-				width: 100%;
-				flex-direction: column;
-				background: white;
-				text-align: center;
-				padding: 20px 0;
-				gap: 16px;
-				transform: translateY(-200%);
-				opacity: 0;
-				pointer-events: none;
-				transition: all 0.4s ease-in-out;
-			}
-
-			.nav-links.active {
-				transform: translateY(0);
-				opacity: 1;
-				pointer-events: all;
-				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-			}
-
-			.btn {
-				display: none;
-			}
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>IT Visa</title>
+		<link rel="stylesheet" href="{% static 'assets/css/why.css' %}" />
+		<link
+			rel="shortcut icon"
+			type="image/x-icon"
+			href="{% static 'assets/media/icons/removebg.png' %}"
+		/>
+        {% block content %}
+		<style>
 
 			.hero {
-				padding: 60px 20px;
-				height: 60vh;
-				align-items: center;
-				justify-content: center;
+				background: url("{% static 'assets/media/images/63f02ff0cf19e90057f797ce40ffcc2cbc8bded8.png' %}")
+					no-repeat center center/cover;
+				height: 70vh;
+				display: flex;
+				align-items: flex-start;
+				padding: 80px 80px;
+				position: relative;
+			}
+
+			.hero .overlays {
+				background: rgba(255, 255, 255, 0.15);
+				border-radius: 20px;
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				border: 1px solid rgba(255, 255, 255, 0.3);
+				padding: 20px;
+				max-width: 400px;
 				text-align: center;
+				color: #fff;
+				box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 			}
 
 			.hero .overlays h1 {
-				font-size: 36px;
+				font-size: 48px;
+				font-weight: 700;
+				margin-bottom: 20px;
 			}
 
-			.footer {
-				flex-direction: column;
-				align-items: center;
+			.hero .overlays p {
+				font-size: 18px;
+				line-height: 1.4;
+			}
+
+			/* === RISK SECTION === */
+			.risk-section {
+				background: #f8f9fa;
+				padding: 40px 10px;
 				text-align: center;
-				padding: 40px 20px;
 			}
-		}
-	</style>
-</head>
 
-<body>
-	<!-- ===== NAVBAR ===== -->
-	<header class="navbar">
-		<div class="logo">
-			<a href="{% url 'home' %}">
-				<img src="{% static 'assets/Frame (1).png' %}" alt="logo">
-			</a>
-		</div>
+			.risk-cards {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 30px;
+				max-width: 1100px;
+				margin: 20px auto 0;
+			}
 
-		<ul class="nav-links" id="navLinks">
-                    <li><a href="{% url 'why' %}">Why Navoi?</a></li>
-					<li><a href="{% url 'explore' %}">Explore opportunities</a></li>
-					<li><a href="{% url 'bpo' %}">BPO</a></li>
-					<li><a href="{% url 'it-visa' %}">IT Visa</a></li>
-		</ul>
+			.risk-card {
+				background: white;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 10px;
+				text-transform: uppercase;
+				border-radius: 10px;
+				box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+				padding: 20px;
+				flex: 1 1 250px;
+				text-align: left;
+			}
 
-		<a href="#" class="btn">Contact us</a>
+			.risk-card img {
+				width: 50px;
+				height: 50px;
+			}
 
-		<div class="hamburger" id="hamburger">
-			<span></span>
-			<span></span>
-			<span></span>
-		</div>
-	</header>
+			.risk-card p {
+				font-size: 14px;
+				color: #333;
+			}
 
-	<!-- ===== HERO SECTION ===== -->
-	<section class="hero">
-		<div class="overlays">
-			<h1>IT Visa</h1>
-			<p>
-				A resident company is eligible to apply for IT Visas that are provided to its founders, investors, and
-				employees. It is valid for 3 years and allows to work in Uzbekistan without a work permit.
-			</p>
-		</div>
-	</section>
+			/* === VISA SECTION === */
+			.visa-section {
+				text-align: center;
+				padding: 60px 20px;
+				border-radius: 8px;
+				max-width: 1200px;
+				margin: 40px auto;
+			}
 
-	<!-- ===== RISK SECTION ===== -->
-	<div class="risk-section">
-		<div class="risk-cards">
-			<div class="risk-card">
-				<img src="{% static 'assets/media/images/image.png' %}" alt="Equal Rights">
-				<p>EQUAL social rights with citizens of Uzbekistan</p>
+			.visa-section h2 {
+				font-size: 28px;
+				margin-bottom: 40px;
+				font-weight: 600;
+			}
+
+			.visa-cards {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 40px;
+			}
+
+			.visa-card {
+				background-color: #fff;
+				border-radius: 10px;
+				box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+				padding: 25px;
+				width: 320px;
+				text-align: center;
+				transition: transform 0.3s;
+			}
+
+			.visa-card:hover {
+				transform: translateY(-8px);
+			}
+
+			.icon img {
+				width: 80px;
+				height: 80px;
+				margin-bottom: 15px;
+			}
+
+			.visa-card h3 {
+				font-size: 18px;
+				margin-bottom: 15px;
+				font-weight: 600;
+			}
+
+			.visa-card p {
+				font-size: 14px;
+				line-height: 1.6;
+				text-align: justify;
+				color: #333;
+			}
+
+			/* === FOOTER === */
+			.footer {
+				background: #1a1a1a;
+				color: #fff;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				gap: 30px;
+				padding: 50px 60px;
+			}
+
+			.footer-column {
+				flex: 1 1 300px;
+			}
+
+			.footer-logo img {
+				width: 120px;
+				margin-bottom: 10px;
+			}
+
+			.footer h4 {
+				margin-bottom: 15px;
+				font-size: 18px;
+			}
+
+			.footer p {
+				font-size: 14px;
+				line-height: 1.6;
+				color: #ddd;
+			}
+
+			.footer-links ul {
+				list-style: none;
+			}
+
+			.footer-links li {
+				margin-bottom: 8px;
+			}
+
+			.footer-links a {
+				color: #ddd;
+				text-decoration: none;
+				transition: 0.3s;
+			}
+
+			.footer-links a:hover {
+				color: #8cd18c;
+			}
+
+			/* === RESPONSIVE DESIGN === */
+			@media (max-width: 1024px) {
+				.navbar {
+					padding: 16px 32px;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.hamburger {
+					display: flex;
+				}
+
+				.nav-links {
+					position: absolute;
+					top: 100%;
+					left: 0;
+					width: 100%;
+					flex-direction: column;
+					background: white;
+					text-align: center;
+					padding: 20px 0;
+					gap: 16px;
+					transform: translateY(-200%);
+					opacity: 0;
+					pointer-events: none;
+					transition: all 0.4s ease-in-out;
+				}
+
+				.nav-links.active {
+					transform: translateY(0);
+					opacity: 1;
+					pointer-events: all;
+					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+				}
+
+				.btn {
+					display: none;
+				}
+
+				.hero {
+					padding: 60px 20px;
+					height: 60vh;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+				}
+
+				.hero .overlays h1 {
+					font-size: 36px;
+				}
+
+				.footer {
+					flex-direction: column;
+					align-items: center;
+					text-align: center;
+					padding: 40px 20px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- ===== HERO SECTION ===== -->
+		<section class="hero">
+			<div class="overlays">
+				<h1>IT Visa</h1>
+				<p>
+					A resident company is eligible to apply for IT Visas that are provided
+					to its founders, investors, and employees. It is valid for 3 years and
+					allows to work in Uzbekistan without a work permit.
+				</p>
 			</div>
-			<div class="risk-card">
-				<img src="{% static 'assets/media/icons/7.png' %}" alt="Real Estate">
-				<p>purchase of real estate of any value in the territory of the Republic of Uzbekistan</p>
-			</div>
-		</div>
-	</div>
+		</section>
 
-	<!-- ===== VISA SECTION ===== -->
-	<section class="visa-section">
-		<h2>Who can obtain IT Visa</h2>
-		<div class="visa-cards">
-
-			<div class="visa-card">
-				<div class="icon">
-					<img src="{% static 'assets/media/icons/codigo.png' %}" alt="IT Professionals">
+		<!-- ===== RISK SECTION ===== -->
+		<div class="risk-section">
+			<div class="risk-cards">
+				<div class="risk-card">
+					<img
+						src="{% static 'assets/media/images/image.png' %}"
+						alt="Equal Rights"
+					/>
+					<p>EQUAL social rights with citizens of Uzbekistan</p>
 				</div>
-				<h3>IT professionals</h3>
-				<p><strong>IT specialist</strong> - a specialist who has a qualification/specialization in the field of
-					information technology, is employed in a legal entity of a resident of the Republic of Uzbekistan in an IT
-					specialty and confirms his income from IT activities is not less than the equivalent of 30,000 US dollars for
-					the last 12 months at the time of application.</p>
-			</div>
-
-			<div class="visa-card">
-				<div class="icon">
-					<img src="{% static 'assets/media/icons/tag-user-svgrepo-com.svg' %}" alt="Founders">
+				<div class="risk-card">
+					<img
+						src="{% static 'assets/media/icons/7.png' %}"
+						alt="Real Estate"
+					/>
+					<p>
+						purchase of real estate of any value in the territory of the
+						Republic of Uzbekistan
+					</p>
 				</div>
-				<h3>Founders of IT Park resident companies</h3>
-				<p><strong>The founder of an IT Park resident</strong> is an individual who is the founder/founder of a legal
-					entity of a Technopark resident, duly registered and included in the Unified Register of Residents.</p>
 			</div>
+		</div>
 
-			<div class="visa-card">
-				<div class="icon">
-					<img src="{% static 'assets/media/icons/credit-cards-svgrepo-com.svg' %}" alt="Investors">
+		<!-- ===== VISA SECTION ===== -->
+		<section class="visa-section">
+			<h2>Who can obtain IT Visa</h2>
+			<div class="visa-cards">
+				<div class="visa-card">
+					<div class="icon">
+						<img
+							src="{% static 'assets/media/icons/codigo.png' %}"
+							alt="IT Professionals"
+						/>
+					</div>
+					<h3>IT professionals</h3>
+					<p>
+						<strong>IT specialist</strong> - a specialist who has a
+						qualification/specialization in the field of information technology,
+						is employed in a legal entity of a resident of the Republic of
+						Uzbekistan in an IT specialty and confirms his income from IT
+						activities is not less than the equivalent of 30,000 US dollars for
+						the last 12 months at the time of application.
+					</p>
 				</div>
-				<h3>Investors</h3>
-				<p><strong>An Investor</strong> is an individual or a representative of a foreign investment company providing
-					financing to a Legal Entity operating in the field of information technology through an Agreement in the
-					amount of at least the equivalent of 10 thousand US dollars.</p>
+
+				<div class="visa-card">
+					<div class="icon">
+						<img
+							src="{% static 'assets/media/icons/tag-user-svgrepo-com.svg' %}"
+							alt="Founders"
+						/>
+					</div>
+					<h3>Founders of IT Park resident companies</h3>
+					<p>
+						<strong>The founder of an IT Park resident</strong> is an individual
+						who is the founder/founder of a legal entity of a Technopark
+						resident, duly registered and included in the Unified Register of
+						Residents.
+					</p>
+				</div>
+
+				<div class="visa-card">
+					<div class="icon">
+						<img
+							src="{% static 'assets/media/icons/credit-cards-svgrepo-com.svg' %}"
+							alt="Investors"
+						/>
+					</div>
+					<h3>Investors</h3>
+					<p>
+						<strong>An Investor</strong> is an individual or a representative of
+						a foreign investment company providing financing to a Legal Entity
+						operating in the field of information technology through an
+						Agreement in the amount of at least the equivalent of 10 thousand US
+						dollars.
+					</p>
+				</div>
 			</div>
-		</div>
-	</section>
-	<footer class="footer">
-		<div class="footer-column footer-logo">
-			<img src="{% static 'assets/media/logo-navoi.png' %}" alt="Logo">
-			<h4>NAVOI REGIONAL GOVERNMENT</h4>
-			<p>Lorem ipsum dolor sit amet consectetur. Ut elementum vitae bibendum mi arcu consectetur viverra accumsan felis
-				pharetra.</p>
-		</div>
+		</section>
 
-		<div class="footer-column footer-links">
-			<h4>Quick Links</h4>
-			<ul class="list-unstyled m-0 p-0 text-center">
-                            <li class="mb-24">
-                                <h6 class="fw-500">Quick Links</h6>
-                            </li>
-                            <li class="mb-24 white"><a href="{% url 'why' %}">Why Navoi?</a></li>
-                            <li class="mb-24 white">
-                                <a href="{% url 'explore' %}">Explore oppoturnities</a>
-                            </li>
-                            <li class="mb-24 white"><a href="{% url 'bpo' %}">BPO</a></li>
-                            <li class="white"><a href="{% url 'it-visa' %}">IT Visa</a></li>
-                        </ul>
-		</div>
+		<!-- ===== SCRIPT ===== -->
+		<script>
+			const hamburger = document.getElementById('hamburger')
+			const navLinks = document.getElementById('navLinks')
 
-		<div class="footer-column footer-signup">
-			<h4>Sign-Up For Updates</h4>
-			<p>Etiam quis nunc et nulla nulla velit donec. Ac varius sollicitudin eget morbi varius nibh nunc dui ultrices.
-			</p>
-		</div>
-	</footer>
+			hamburger.addEventListener('click', () => {
+				hamburger.classList.toggle('open')
+				navLinks.classList.toggle('active')
+			})
+		</script>
+        {% endblock %}
 
-	<!-- ===== SCRIPT ===== -->
-	<script>
-		const hamburger = document.getElementById('hamburger');
-		const navLinks = document.getElementById('navLinks');
-
-		hamburger.addEventListener('click', () => {
-			hamburger.classList.toggle('open');
-			navLinks.classList.toggle('active');
-		});
-	</script>
-</body>
-
+	</body>
 </html>

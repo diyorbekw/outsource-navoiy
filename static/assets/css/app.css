@@ -24,6 +24,8 @@ STYLE SHEET INDEXING
 @import url("../../../../../../https@fonts.googleapis.com/css2@family=Plus+Jakarta+Sans_3Aital,wght_400,200..800;1,200..800&display=swap");
 @import url("../../../../../../https@fonts.googleapis.com/css2@family=Outfit_3Awght_40100..900&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 /*-------------------------
     Variables
 -------------------------*/
@@ -213,9 +215,8 @@ html {
 }
 
 body {
-  font-family: "Outfit", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #EAEAEC;
-  /*  background-color: #0C0C0D;*/
   background-color: #f8fafc;
   vertical-align: baseline;
   -webkit-font-smoothing: antialiased;
@@ -2488,8 +2489,10 @@ label.error {
   .header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list,
   .header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list ul {
     display: flex;
+    justify-content: space-between;
     gap: clamp(16px, 1.25vw, 48px);
   }
+  
 }
 
 .header .navigation .menu-button-right .main-menu__nav .main-menu__list>li,
@@ -2501,15 +2504,13 @@ label.error {
 
 .header .navigation .menu-button-right .main-menu__nav .main-menu__list>li>a,
 .header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list>li>a {
-  font-size: clamp(18px, 0.938vw, 22px);
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 900;
   line-height: 150%;
-  font-family: "Outfit", sans-serif;
   text-transform: capitalize;
   letter-spacing: 0.32px;
   color: #FAFAFA;
   display: flex;
-  align-items: center;
   gap: clamp(24px, 1.667vw, 64px);
   position: relative;
   transition: all all 0.3s ease-in-out;
@@ -2517,13 +2518,9 @@ label.error {
 
 .header .navigation .menu-button-right .main-menu__nav .main-menu__list>li>a.active,
 .header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list>li>a.active {
-  color: #02EBFD;
+  color: #0afd02;
 }
 
-.header .navigation .menu-button-right .main-menu__nav .main-menu__list>li>a:hover,
-.header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list>li>a:hover {
-  color: #02EBFD;
-}
 
 .header .navigation .menu-button-right .main-menu__nav .main-menu__list>li .header-arrow,
 .header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list>li .header-arrow {
@@ -2535,7 +2532,7 @@ label.error {
 .header .navigation .menu-button-right .main-menu__nav .main-menu__list>li:hover,
 .header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list>li.current,
 .header .navigation .menu-button-right .main-menu__nav .stricky-header .main-menu__list>li:hover {
-  color: #02EBFD;
+  color: #0afd02;
 }
 
 .header .navigation .menu-button-right .main-menu__nav .main-menu__list li ul,
@@ -2571,8 +2568,7 @@ label.error {
   font-size: clamp(14px, 0.833vw, 20px);
   line-height: 26px;
   color: #FAFAFA;
-  font-weight: 500;
-  font-family: "Outfit", sans-serif;
+  font-weight: 900;
   display: flex;
   padding: 7px 20px;
   transition: 400ms;
@@ -2829,7 +2825,7 @@ label.error {
 }
 
 .mobile-nav__wrapper .mobile-nav__content .logo-box {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   display: flex;
 }
 
@@ -3114,153 +3110,206 @@ label.error {
     align-items: center;
   }
 }
- .wrap{
-      max-width:1340px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns: 630px 1fr; /* chap 430px (kontakt), o‘ng qolgan joy (FAQ) */
-      gap:28px;
-      align-items:start;
-    }
 
-    /* Contact form card (chap) */
-    .form-card{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding: 24px;
-      box-shadow: 0 6px 20px rgba(15,23,42,0.06);
-      position:sticky;
-      color: #000;
-      top:28px;
-    }
-    .form-card h2{ margin:0 0 6px 0; font-size:18px; }
-    .form-card p{ margin:0 0 16px 0; color:var(--muted); font-size:13px; }
+.wrap {
+  max-width: 1340px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 630px 1fr;
+  /* chap 430px (kontakt), o‘ng qolgan joy (FAQ) */
+  gap: 28px;
+  align-items: start;
+}
 
-    .grid-2{
-      display:grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap:12px;
-    }
-    .field{
-      margin-bottom:12px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    label{ font-size:13px; color:#111827; }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    textarea{
-      border:1px solid #e6edf8;
-      background:#fbfdff;
-      padding:10px 12px;
-      border-radius:10px;
-      font-size:14px;
-      outline:none;
-      transition:box-shadow .15s, border-color .15s;
-    }
-    input:focus, textarea:focus{
-      box-shadow: 0 6px 18px rgba(22,163,74,0.08);
-      border-color:var(--accent);
-    }
-    textarea{ min-height:110px; resize:vertical; }
+/* Contact form card (chap) */
+.form-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+  position: sticky;
+  color: #000;
+  top: 28px;
+}
 
-    .small{ font-size:12px; color:var(--muted); }
+.form-card h2 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+}
 
-    .actions{
-      display:flex;
-      gap:12px;
-      justify-content:center;
-      align-items: center;
-      margin-top:10px;
-    }
+.form-card p {
+  margin: 0 0 16px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
 
-    .btn{
-      background:#15803d;
-      color:white;
-      padding:10px 40px;
-      border-radius:10px;
-      border:0;
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
 
-      cursor:pointer;
-      font-weight:600;
-      color: white;
-      box-shadow: 0 6px 18px rgba(22,163,74,0.15);
-      transition: background .2s ease;
+.field {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
 
-    }
-    .btn:hover{ background:#15803d; color: white; }
+label {
+  font-size: 13px;
+  color: #111827;
+}
 
-    .secondary{
-      background:transparent;
-      border:1px solid #e6edf8;
-      color:#0b1220;
-      padding:8px 12px;
-      border-radius:10px;
-      cursor:pointer;
-    }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  border: 1px solid #e6edf8;
+  background: #fbfdff;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: box-shadow .15s, border-color .15s;
+}
 
-    .success{
-      display:none;
-      margin-top:12px;
-      padding:12px;
-      background:#ecfdf5;
-      color:#065f46;
-      border-radius:10px;
-      font-weight:600;
-    }
+input:focus,
+textarea:focus {
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.08);
+  border-color: var(--accent);
+}
 
-    /* FAQ card (o‘ng) */
-    .faq-card{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow: 0 6px 20px rgba(15,23,42,0.06);
-    }
-    .faq-title{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:18px;
-    }
-    .badge{
-      background:rgba(22,163,74,0.1);
-      color:var(--accent);
-      padding:6px 10px;
-      border-radius:10px;
-      font-weight:600;
-      font-size:13px;
-    }
-    h1{ font-size:20px; margin:0; }
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
 
-    .faq-list{ margin-top:12px; }
-    .faq-item{
-      border-top:1px solid #ecfdf5;
-      padding:14px 0;
-      color: black;
-    }
-    .faq-q{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      cursor:pointer;
-      gap:12px;
-    }
-    .faq-q strong{ font-weight:600; font-size:15px; }
-    .faq-a{
-      margin-top:8px;
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.5;
-      display:none;
-    }
+.small {
+  font-size: 12px;
+  color: var(--muted);
+}
 
-    /* responsive */
-    @media (max-width:980px){
-      .wrap{ grid-template-columns: 1fr; padding-bottom:40px; }
-      .form-card{ position:relative; top:0; }
-    }
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.btn {
+  background: #15803d;
+  color: white;
+  padding: 10px 40px;
+  border-radius: 10px;
+  border: 0;
+
+  cursor: pointer;
+  font-weight: 600;
+  color: white;
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.15);
+  transition: background .2s ease;
+
+}
+
+.btn:hover {
+  background: #15803d;
+  color: white;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid #e6edf8;
+  color: #0b1220;
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.success {
+  display: none;
+  margin-top: 12px;
+  padding: 12px;
+  background: #ecfdf5;
+  color: #065f46;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* FAQ card (o‘ng) */
+.faq-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+}
+
+.faq-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.badge {
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--accent);
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.faq-list {
+  margin-top: 12px;
+}
+
+.faq-item {
+  border-top: 1px solid #ecfdf5;
+  padding: 14px 0;
+  color: black;
+}
+
+.faq-q {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  gap: 12px;
+}
+
+.faq-q strong {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.faq-a {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+  display: none;
+}
+
+/* responsive */
+@media (max-width:980px) {
+  .wrap {
+    grid-template-columns: 1fr;
+    padding-bottom: 40px;
+  }
+
+  .form-card {
+    position: relative;
+    top: 0;
+  }
+}
+
 .hero-banner .hero-wrapper .first-block .sub-block {
   background: rgba(255, 255, 255, 0.1);
   /* oqsimon shaffof */
@@ -4233,6 +4282,7 @@ label.error {
 
 
 .blog-section .blog-card .blog-image {
+  
   border-radius: clamp(24px, 1.667vw, 64px) clamp(24px, 1.667vw, 64px) 0 0;
   overflow: hidden;
 }
@@ -4272,7 +4322,7 @@ label.error {
 .blog-section .blog-card .blog-content {
   border-radius: 0 0 clamp(24px, 1.667vw, 64px) clamp(24px, 1.667vw, 64px);
   background-color: white;
-  box-shadow: 2px 6px 2px  rgb(238, 229, 229);
+  box-shadow: 2px 6px 2px rgb(238, 229, 229);
   color: black;
   padding: clamp(16px, 1.25vw, 48px) clamp(12px, 0.833vw, 32px) clamp(16px, 1.25vw, 48px) clamp(12px, 0.833vw, 32px);
 }
@@ -4419,24 +4469,28 @@ label.error {
   background: rgba(27, 27, 29, 0.5);
   backdrop-filter: blur(120px);
 }
+
 .forms-subtitle {
   display: flex;
-  gap: 40px; 
+  gap: 40px;
   max-width: 1340px;
   margin: auto;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
 }
-.containers{
-width: 300px;
+
+.containers {
+  width: 300px;
 }
-.containers, .contact-section {
-  flex: 1; 
+
+.containers,
+.contact-section {
+  flex: 1;
   padding: 24px;
   border: 1px solid #ddd;
   border-radius: 12px;
   background: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 
@@ -4506,7 +4560,8 @@ h1 {
   margin: 80px auto;
   padding: 40px;
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.7); /* yarim shaffof */
+  background: rgba(255, 255, 255, 0.7);
+  /* yarim shaffof */
   backdrop-filter: blur(12px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
