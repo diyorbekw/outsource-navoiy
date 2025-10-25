@@ -1,7 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
-# Create your models here.
 class Client(models.Model):
     full_name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
@@ -33,7 +32,8 @@ class Blog(models.Model):
     description = models.TextField(max_length=120)
     content = RichTextField()
     creator = models.CharField(max_length=255)
-    image = models.ImageField(upload_to='blog_images/')
+    main_image = models.ImageField(upload_to='blog_main_images/')
+    content_image = models.ImageField(upload_to='blog_content_images/')
     minutes_to_read = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True)
@@ -44,8 +44,8 @@ class Blog(models.Model):
     class Meta:
         verbose_name = "Blog"
         verbose_name_plural = "Blogs"
+        ordering = ['-created_at']
 
-        
 class Risk(models.Model):
     percent = models.FloatField()
     content = models.CharField(max_length=255)
@@ -93,7 +93,6 @@ class Contact(models.Model):
         verbose_name = "Contact"
         verbose_name_plural = "Contacts"
         
-        
 class SuccessNumber(models.Model):
     resident_companies = models.IntegerField()
     export_revenue = models.IntegerField()
@@ -119,7 +118,7 @@ class SpecialCategories(models.Model):
         
 class SpecialService(models.Model):
     category = models.ForeignKey(SpecialCategories, on_delete=models.CASCADE)
-    content = models.TextField(max_length=400)
+    content = models.CharField(max_length=400)
     image = models.ImageField(upload_to='special_services/')
 
     def __str__(self):

@@ -14,6 +14,8 @@ class FAQAdmin(admin.ModelAdmin):
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('title', 'creator', 'minutes_to_read', 'created_at')
     prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('created_at',)
+    search_fields = ('title', 'description', 'content', 'creator')
 
 class RiskAdmin(admin.ModelAdmin):
     list_display = ('percent', 'content')

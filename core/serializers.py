@@ -23,15 +23,21 @@ class FAQSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BlogSerializer(serializers.ModelSerializer):
-    image = serializers.SerializerMethodField()
+    main_image = serializers.SerializerMethodField()
+    content_image = serializers.SerializerMethodField()
     
     class Meta:
         model = Blog
         fields = '__all__'
     
-    def get_image(self, obj):
-        if obj.image:
-            return self.context['request'].build_absolute_uri(obj.image.url)
+    def get_main_image(self, obj):
+        if obj.main_image:
+            return self.context['request'].build_absolute_uri(obj.main_image.url)
+        return None
+    
+    def get_content_image(self, obj):
+        if obj.content_image:
+            return self.context['request'].build_absolute_uri(obj.content_image.url)
         return None
 
 class RiskSerializer(serializers.ModelSerializer):

@@ -1,5 +1,11 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import filters
+from django.utils import timezone
+from datetime import timedelta
+from django.db.models import Q
 from .models import (
     Client, FAQ, Blog, Risk,
     OneStopShopProgram, OutSourcingService, Contact,
@@ -12,6 +18,43 @@ from .serializers import (
     SuccessNumberSerializer, SpecialCategoriesSerializer, SpecialServiceSerializer
 )
 import requests
+
+# --- Pagination ---
+class BlogPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
+
+# --- Blog Filter ---
+class BlogFilter:
+    @staticmethod
+    def filter_queryset(request, queryset):
+        period = request.query_params.get('period')
+        search = request.query_params.get('search')
+        
+        # Vaqt bo'yicha filtrlash
+        if period:
+            now = timezone.now()
+            if period == 'weekly':
+                start_date = now - timedelta(days=7)
+                queryset = queryset.filter(created_at__gte=start_date)
+            elif period == 'monthly':
+                start_date = now - timedelta(days=30)
+                queryset = queryset.filter(created_at__gte=start_date)
+            elif period == 'yearly':
+                start_date = now - timedelta(days=365)
+                queryset = queryset.filter(created_at__gte=start_date)
+        
+        # Qidiruv
+        if search:
+            queryset = queryset.filter(
+                Q(title__icontains=search) |
+                Q(description__icontains=search) |
+                Q(content__icontains=search) |
+                Q(creator__icontains=search)
+            )
+        
+        return queryset
 
 # --- CRUD API-lar ---
 class ClientViewSet(viewsets.ModelViewSet):
@@ -28,13 +71,32 @@ class FAQViewSet(viewsets.ModelViewSet):
     serializer_class = FAQSerializer
 
 class BlogViewSet(viewsets.ModelViewSet):
-    queryset = Blog.objects.all().order_by('-created_at')
+    queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+    pagination_class = BlogPagination
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ['title', 'description', 'content', 'creator']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return BlogFilter.filter_queryset(self.request, queryset)
 
     def get_serializer_context(self):
         context = super().get_serializer_context()
         context['request'] = self.request
         return context
+
+    def list(self, request, *args, **kwargs):
+        """Blog listini qaytarish filtrlash va paginatsiya bilan"""
+        queryset = self.filter_queryset(self.get_queryset())
+        
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+        
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
 
 class RiskViewSet(viewsets.ModelViewSet):
     queryset = Risk.objects.all()
