@@ -6,7 +6,8 @@ from drf_yasg import openapi
 
 from .views import (
     ClientViewSet, FAQViewSet, BlogViewSet, RiskViewSet,
-    OneStopShopProgramViewSet, OutSourcingServiceViewSet, ContactViewSet
+    OneStopShopProgramViewSet, OutSourcingServiceViewSet, ContactViewSet,
+    SuccessNumberViewSet, SpecialCategoriesViewSet, SpecialServiceViewSet
 )
 
 # --- API router ---
@@ -18,6 +19,9 @@ router.register(r'risks', RiskViewSet)
 router.register(r'onestopshopprograms', OneStopShopProgramViewSet)
 router.register(r'outsourcingservices', OutSourcingServiceViewSet)
 router.register(r'contacts', ContactViewSet)
+router.register(r'successnumbers', SuccessNumberViewSet, basename='successnumbers')
+router.register(r'specialcategories', SpecialCategoriesViewSet, basename='specialcategories')
+router.register(r'specialservices', SpecialServiceViewSet, basename='specialservices')
 
 # --- Swagger konfiguratsiyasi ---
 schema_view = get_schema_view(

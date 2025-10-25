@@ -92,3 +92,39 @@ class Contact(models.Model):
     class Meta:
         verbose_name = "Contact"
         verbose_name_plural = "Contacts"
+        
+        
+class SuccessNumber(models.Model):
+    resident_companies = models.IntegerField()
+    export_revenue = models.IntegerField()
+    export_destinations = models.IntegerField()
+    skilled_specialists = models.IntegerField()
+    
+    def __str__(self):
+        return "Success Numbers"
+    
+    class Meta:
+        verbose_name = "Success Number"
+        verbose_name_plural = "Success Numbers"
+        
+class SpecialCategories(models.Model):
+    title = models.CharField(max_length=50)
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Special Category"
+        verbose_name_plural = "Special Categories"
+        
+class SpecialService(models.Model):
+    category = models.ForeignKey(SpecialCategories, on_delete=models.CASCADE)
+    content = models.TextField(max_length=400)
+    image = models.ImageField(upload_to='special_services/')
+
+    def __str__(self):
+        return f"{self.category.title} - {self.content}"
+    
+    class Meta:
+        verbose_name = "Special Service"
+        verbose_name_plural = "Special Services"
