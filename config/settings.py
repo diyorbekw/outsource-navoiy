@@ -25,10 +25,15 @@ SECRET_KEY = 'django-insecure-phqn#mi_k(dpq44jnvu+27iuoa%ws-sksj9aq+z!rv*cd+xw(7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1"]
+ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1", "localhost:3000"]
 
-ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1", "localhost", "localhost:3000"]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://outsource.sifatdev.uz",
+]
 
 # Application definition
 
