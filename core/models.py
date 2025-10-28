@@ -118,7 +118,7 @@ class SpecialCategories(models.Model):
         
 class SpecialService(models.Model):
     category = models.ForeignKey(SpecialCategories, on_delete=models.CASCADE)
-    content = models.CharField(max_length=400)
+    content = models.TextField(max_length=400)
     image = models.ImageField(upload_to='special_services/')
 
     def __str__(self):
