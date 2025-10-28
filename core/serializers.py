@@ -2,7 +2,8 @@ from rest_framework import serializers
 from .models import (
     Client, FAQ, Blog, Risk,
     OneStopShopProgram, OutSourcingService, Contact,
-    SuccessNumber, SpecialCategories, SpecialService
+    SuccessNumber, SpecialCategories, SpecialService,
+    Education, InvestorProgram, Statistics, Tax
 )
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -82,3 +83,37 @@ class SpecialServiceSerializer(serializers.ModelSerializer):
         if obj.image:
             return self.context['request'].build_absolute_uri(obj.image.url)
         return None
+
+class EducationSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Education
+        fields = '__all__'
+    
+    def get_image(self, obj):
+        if obj.image:
+            return self.context['request'].build_absolute_uri(obj.image.url)
+        return None
+
+class InvestorProgramSerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = InvestorProgram
+        fields = '__all__'
+    
+    def get_image(self, obj):
+        if obj.image:
+            return self.context['request'].build_absolute_uri(obj.image.url)
+        return None
+
+class StatisticsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Statistics
+        fields = '__all__'
+
+class TaxSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tax
+        fields = '__all__'

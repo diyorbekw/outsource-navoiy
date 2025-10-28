@@ -1,6 +1,7 @@
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, mixins
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.decorators import action
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from django.utils import timezone
@@ -9,13 +10,16 @@ from django.db.models import Q
 from .models import (
     Client, FAQ, Blog, Risk,
     OneStopShopProgram, OutSourcingService, Contact,
-    SuccessNumber, SpecialCategories, SpecialService
+    SuccessNumber, SpecialCategories, SpecialService,
+    Education, InvestorProgram, Statistics, Tax
 )
 from .serializers import (
     ClientSerializer, FAQSerializer, BlogSerializer,
     RiskSerializer, OneStopShopProgramSerializer,
     OutSourcingServiceSerializer, ContactSerializer,
-    SuccessNumberSerializer, SpecialCategoriesSerializer, SpecialServiceSerializer
+    SuccessNumberSerializer, SpecialCategoriesSerializer, 
+    SpecialServiceSerializer, EducationSerializer,
+    InvestorProgramSerializer, StatisticsSerializer, TaxSerializer
 )
 import requests
 
@@ -56,8 +60,17 @@ class BlogFilter:
         
         return queryset
 
+# --- Base ReadOnly ViewSet ---
+class ReadOnlyViewSet(mixins.ListModelMixin, 
+                     mixins.RetrieveModelMixin, 
+                     viewsets.GenericViewSet):
+    """
+    Faqat GET so'rovlari (list va retrieve) uchun base ViewSet
+    """
+    pass
+
 # --- CRUD API-lar ---
-class ClientViewSet(viewsets.ModelViewSet):
+class ClientViewSet(ReadOnlyViewSet):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
 
@@ -66,11 +79,11 @@ class ClientViewSet(viewsets.ModelViewSet):
         context['request'] = self.request
         return context
 
-class FAQViewSet(viewsets.ModelViewSet):
+class FAQViewSet(ReadOnlyViewSet):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
 
-class BlogViewSet(viewsets.ModelViewSet):
+class BlogViewSet(ReadOnlyViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     pagination_class = BlogPagination
@@ -86,31 +99,25 @@ class BlogViewSet(viewsets.ModelViewSet):
         context['request'] = self.request
         return context
 
-    def list(self, request, *args, **kwargs):
-        """Blog listini qaytarish filtrlash va paginatsiya bilan"""
-        queryset = self.filter_queryset(self.get_queryset())
-        
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-
-class RiskViewSet(viewsets.ModelViewSet):
+class RiskViewSet(ReadOnlyViewSet):
     queryset = Risk.objects.all()
     serializer_class = RiskSerializer
 
-class OneStopShopProgramViewSet(viewsets.ModelViewSet):
+class OneStopShopProgramViewSet(ReadOnlyViewSet):
     queryset = OneStopShopProgram.objects.all()
     serializer_class = OneStopShopProgramSerializer
 
-class OutSourcingServiceViewSet(viewsets.ModelViewSet):
+class OutSourcingServiceViewSet(ReadOnlyViewSet):
     queryset = OutSourcingService.objects.all()
     serializer_class = OutSourcingServiceSerializer
 
-class ContactViewSet(viewsets.ModelViewSet):
+class ContactViewSet(mixins.CreateModelMixin,
+                    mixins.ListModelMixin,
+                    mixins.RetrieveModelMixin,
+                    viewsets.GenericViewSet):
+    """
+    Contact uchun GET (list, retrieve) va POST methodlari
+    """
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
@@ -144,39 +151,68 @@ class ContactViewSet(viewsets.ModelViewSet):
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# --- Maxsus GET API-lar ---
-class SuccessNumberViewSet(viewsets.ViewSet):
+class SuccessNumberViewSet(ReadOnlyViewSet):
     """
-    SuccessNumber uchun faqat GET so'rovi (birinchi yozuvni qaytaradi)
+    SuccessNumber uchun faqat GET so'rovi
     """
-    def list(self, request):
-        success_number = SuccessNumber.objects.first()
-        if success_number:
-            serializer = SuccessNumberSerializer(success_number)
-            return Response(serializer.data)
-        return Response({"detail": "Ma'lumot topilmadi"}, status=status.HTTP_404_NOT_FOUND)
+    queryset = SuccessNumber.objects.all()
+    serializer_class = SuccessNumberSerializer
 
-class SpecialCategoriesViewSet(viewsets.ViewSet):
+class SpecialCategoriesViewSet(ReadOnlyViewSet):
     """
-    SpecialCategories uchun faqat GET so'rovi (barcha kategoriyalarni qaytaradi)
+    SpecialCategories uchun faqat GET so'rovi
     """
-    def list(self, request):
-        categories = SpecialCategories.objects.all()
-        serializer = SpecialCategoriesSerializer(categories, many=True)
-        return Response(serializer.data)
+    queryset = SpecialCategories.objects.all()
+    serializer_class = SpecialCategoriesSerializer
 
-class SpecialServiceViewSet(viewsets.ViewSet):
+class SpecialServiceViewSet(ReadOnlyViewSet):
     """
     SpecialService uchun faqat GET so'rovi
-    - Barcha servislarni yoki kategoriya bo'yicha filtrlash
     """
-    def list(self, request):
-        category_id = request.query_params.get('category_id')
-        
-        if category_id:
-            services = SpecialService.objects.filter(category_id=category_id)
-        else:
-            services = SpecialService.objects.all()
-            
-        serializer = SpecialServiceSerializer(services, many=True, context={'request': request})
-        return Response(serializer.data)
+    queryset = SpecialService.objects.all()
+    serializer_class = SpecialServiceSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['category']
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
+class EducationViewSet(ReadOnlyViewSet):
+    """
+    Education uchun faqat GET so'rovi
+    """
+    queryset = Education.objects.all()
+    serializer_class = EducationSerializer
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
+class InvestorProgramViewSet(ReadOnlyViewSet):
+    """
+    InvestorProgram uchun faqat GET so'rovi
+    """
+    queryset = InvestorProgram.objects.all()
+    serializer_class = InvestorProgramSerializer
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
+class StatisticsViewSet(ReadOnlyViewSet):
+    """
+    Statistics uchun faqat GET so'rovi
+    """
+    queryset = Statistics.objects.all()
+    serializer_class = StatisticsSerializer
+
+class TaxViewSet(ReadOnlyViewSet):
+    """
+    Tax uchun faqat GET so'rovi
+    """
+    queryset = Tax.objects.all()
+    serializer_class = TaxSerializer

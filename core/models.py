@@ -127,3 +127,56 @@ class SpecialService(models.Model):
     class Meta:
         verbose_name = "Special Service"
         verbose_name_plural = "Special Services"
+        
+class Education(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='education_images/')
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Education & Talent Development"
+        verbose_name_plural = "Educations & Talent Developments"
+        
+class InvestorProgram(models.Model):
+    title = models.CharField(max_length=255)
+    content = models.TextField()
+    image = models.ImageField(upload_to='investor_programs/')
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Investor Program"
+        verbose_name_plural = "Investor Programs"
+        
+class Statistics(models.Model):
+    employed_professionals = models.IntegerField()
+    companies = models.IntegerField()
+    professionals_count = models.IntegerField()
+    coverage = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return "Statistics"
+    
+    class Meta:
+        verbose_name = "Statistic"
+        verbose_name_plural = "Statistics"
+        
+class Tax(models.Model):
+    corporate_taxes = models.FloatField()
+    property_and_land_taxes = models.FloatField()
+    tax_on_dividends = models.FloatField()
+    billion_turnover_tax = models.FloatField()
+    social_tax = models.FloatField()
+    vat_on_imported_services = models.BooleanField()
+    personal_income_tax = models.FloatField()
+    value_added_tax = models.FloatField()
+    
+    def __str__(self):
+        return "Tax Information"
+    
+    class Meta:
+        verbose_name = "Tax"
+        verbose_name_plural = "Taxes"
