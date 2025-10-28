@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["outsource.sifatdev.uz", "127.0.0.1", "localhost", "localhost:3
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://outsource.sifatdev.uz",
+    "http://outsource.sifatdev.uz",
 ]
 
 # Application definition
