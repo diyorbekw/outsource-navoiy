@@ -6,7 +6,7 @@ class Client(models.Model):
     address = models.CharField(max_length=255)
     company_name = models.CharField(max_length=255)
     profile_photo = models.ImageField(upload_to='profile_photos/')
-    description = models.TextField()
+    description = models.TextField(max_length=140)
     rating = models.IntegerField()
     
     def __str__(self):
