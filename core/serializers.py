@@ -62,9 +62,44 @@ class ContactSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SuccessNumberSerializer(serializers.ModelSerializer):
+    resident_companies = serializers.SerializerMethodField()
+    export_revenue = serializers.SerializerMethodField()
+    export_destinations = serializers.SerializerMethodField()
+    skilled_specialists = serializers.SerializerMethodField()
+
     class Meta:
         model = SuccessNumber
-        fields = '__all__'
+        fields = [
+            'id',
+            'resident_companies',
+            'export_revenue', 
+            'export_destinations',
+            'skilled_specialists'
+        ]
+
+    def get_resident_companies(self, obj):
+        return {
+            "label": "RESIDENT COMPANIES",
+            "value": obj.resident_companies
+        }
+
+    def get_export_revenue(self, obj):
+        return {
+            "label": "EXPORT REVENUE", 
+            "value": obj.export_revenue
+        }
+
+    def get_export_destinations(self, obj):
+        return {
+            "label": "EXPORT DESTINATIONS",
+            "value": obj.export_destinations
+        }
+
+    def get_skilled_specialists(self, obj):
+        return {
+            "label": "SKILLED SPECIALISTS",
+            "value": obj.skilled_specialists
+        }
 
 class SpecialCategoriesSerializer(serializers.ModelSerializer):
     class Meta:
