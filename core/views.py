@@ -7,6 +7,7 @@ from rest_framework import filters
 from django.utils import timezone
 from datetime import timedelta
 from django.db.models import Q
+from rest_framework.viewsets import ReadOnlyModelViewSet
 from .models import (
     Client, FAQ, Blog, Risk,
     OneStopShopProgram, OutSourcingService, Contact,
@@ -83,12 +84,13 @@ class FAQViewSet(ReadOnlyViewSet):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
 
-class BlogViewSet(ReadOnlyViewSet):
+class BlogViewSet(ReadOnlyModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     pagination_class = BlogPagination
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ['title', 'description', 'content', 'creator']
+    lookup_field = 'slug'  # <-- Asosiy o‘zgarish shu yerda
 
     def get_queryset(self):
         queryset = super().get_queryset()

@@ -28,7 +28,7 @@ class FAQ(models.Model):
         verbose_name_plural = "FAQs"
         
 class Blog(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=120)
     description = models.TextField(max_length=120)
     content = RichTextField()
     creator = models.CharField(max_length=255)
