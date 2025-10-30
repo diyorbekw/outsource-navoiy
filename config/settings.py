@@ -62,6 +62,14 @@ CORS_ALLOWED_ORIGINS = [
     "https://outsource-umber.vercel.app"
 ]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://outsource.sifatdev.uz",
+    "https://outsource.sifatdev.uz",
+    "https://outsource-umber.vercel.app"
+]
+
 # Agar frontend HTTPS bo‘lsa, API ham HTTPS bo‘lishi kerak
 # axios.post("https://outsource.sifatdev.uz/api/contacts/", data)
 
