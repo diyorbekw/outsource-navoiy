@@ -19,6 +19,7 @@ ALLOWED_HOSTS = [
     "outsource.sifatdev.uz",
     "127.0.0.1",
     "localhost",
+    "outsource-umber.vercel.app"
 ]
 
 # --- CORS sozlamalari (frontend bilan integratsiya uchun) ---
@@ -57,6 +58,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://outsource.sifatdev.uz",
     "https://outsource.sifatdev.uz",
+    "https://outsource-umber.vercel.app"
 ]
 
 # Agar frontend HTTPS bo‘lsa, API ham HTTPS bo‘lishi kerak
