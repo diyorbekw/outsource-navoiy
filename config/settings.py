@@ -8,14 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # === SECURITY ===
 SECRET_KEY = 'django-insecure-phqn#mi_k(dpq44jnvu+27iuoa%ws-sksj9aq+z!rv*cd+xw(7'
-DEBUG = True
+DEBUG = False  # ✅ Productionda False bo‘ladi
 
 ALLOWED_HOSTS = [
     "outsource.sifatdev.uz",
     "127.0.0.1",
     "localhost",
-    "outsource-umber.vercel.app",
-    "outsourcenavoi.uz"
 ]
 
 # === APPS ===
@@ -30,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'drf_yasg',
-    'corsheaders',  # CORS uchun
+    'corsheaders',
     'core',
 ]
 
@@ -39,7 +37,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
 
-    # ⚠️ CORS middleware — SessionMiddleware dan keyin, CommonMiddleware dan oldin
+    # ⚠️ CORS doimo shu joyda bo‘lishi kerak
     'corsheaders.middleware.CorsMiddleware',
 
     'django.middleware.common.CommonMiddleware',
@@ -51,18 +49,13 @@ MIDDLEWARE = [
 
 # === CORS SETTINGS ===
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "https://outsource.sifatdev.uz",
-    "http://outsource.sifatdev.uz",
-    "https://outsource-umber.vercel.app",
-    "https://outsourcenavoi.uz",
+    "https://outsourcenavoi.uz",   # ✅ Sizning frontend domeningiz
+    "https://outsource.sifatdev.uz",  # Swagger yoki testlar uchun
 ]
 
-# Ba’zan swagger yoki testlar uchun hamma domenlardan ruxsat berish mumkin:
-CORS_ALLOW_ALL_ORIGINS = False  # True qilish xavfli, lekin testda vaqtincha mumkin
+CORS_ALLOW_CREDENTIALS = True  # cookie yoki token yuborish uchun (agar kerak bo‘lsa)
 
-# Agar kerak bo‘lsa, qo‘shimcha headerlarga ruxsat berish:
+# CORS uchun maxsus headerlarga ruxsat
 CORS_ALLOW_HEADERS = [
     "accept",
     "accept-encoding",
@@ -75,17 +68,13 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 
-# === CSRF TRUSTED ORIGINS ===
+# === CSRF SETTINGS ===
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://outsource.sifatdev.uz",
-    "https://outsource.sifatdev.uz",
-    "https://outsource-umber.vercel.app",
     "https://outsourcenavoi.uz",
+    "https://outsource.sifatdev.uz",
 ]
 
-# === URL & APPS ===
+# === URL & WSGI ===
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -123,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # === INTERNATIONALIZATION ===
 LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tashkent'
 USE_I18N = True
 USE_TZ = True
 
@@ -138,7 +127,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # === DEFAULT AUTO FIELD ===
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# === REST FRAMEWORK (optional config) ===
+# === REST FRAMEWORK (optional) ===
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
