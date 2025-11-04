@@ -137,3 +137,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+SWAGGER_SETTINGS = {
+    'DEFAULT_API_URL': 'https://outsource.sifatdev.uz',
+}
