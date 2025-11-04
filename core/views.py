@@ -130,8 +130,8 @@ class ContactViewSet(mixins.CreateModelMixin,
         contact = serializer.save()
 
         # Telegramga yuborish
-        BOT_TOKEN = "7496528180:AAGkAUPuZV3QCsd1svipSL6gcnC0x1sghlA"
-        CHAT_ID = "5515940993"
+        BOT_TOKEN = "8426824622:AAFjedbJoP5AIQQ_9iHj3Tllp-bKbSgEII8"
+        CHAT_ID = "615890961"
 
         text = (
             f"📩 *Yangi murojaat!*\n\n"
