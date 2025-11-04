@@ -59,7 +59,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://outsource.sifatdev.uz",
     "https://outsource.sifatdev.uz",
     "https://outsource.sifatdev.uz",
-    "https://outsource-umber.vercel.app"
+    "https://outsource-umber.vercel.app",
+    "https://outsourcenavoi.uz"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -67,7 +68,8 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://outsource.sifatdev.uz",
     "https://outsource.sifatdev.uz",
-    "https://outsource-umber.vercel.app"
+    "https://outsource-umber.vercel.app",
+    "https://outsourcenavoi.uz"
 ]
 
 # Agar frontend HTTPS bo‘lsa, API ham HTTPS bo‘lishi kerak
