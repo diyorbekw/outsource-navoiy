@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # === SECURITY ===
 SECRET_KEY = 'django-insecure-phqn#mi_k(dpq44jnvu+27iuoa%ws-sksj9aq+z!rv*cd+xw(7'
-DEBUG = False  # ✅ Productionda False bo‘ladi
+DEBUG = True  # ✅ Productionda False bo‘ladi
 
 ALLOWED_HOSTS = [
     "outsource.sifatdev.uz",
