@@ -50,7 +50,11 @@ MIDDLEWARE = [
 # === CORS SETTINGS ===
 CORS_ALLOWED_ORIGINS = [
     "https://outsourcenavoi.uz",   # ✅ Sizning frontend domeningiz
-    "https://outsource.sifatdev.uz",  # Swagger yoki testlar uchun
+    "https://outsource.sifatdev.uz",
+    "http://localhost:3000",       # ✅ Localhost frontend uchun
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",       # ✅ Localhost frontend uchun
+    "http://127.0.0.1:8000",
 ]
 
 CORS_ALLOW_CREDENTIALS = True  # cookie yoki token yuborish uchun (agar kerak bo‘lsa)

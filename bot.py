@@ -8,7 +8,7 @@ import base64
 TOKEN = "8426824622:AAFjedbJoP5AIQQ_9iHj3Tllp-bKbSgEII8"
 CHANNEL_ID = -1003470682478
 DB_NAME = "posts.db"
-API_URL = "http://localhost:8000/api/blogs/"
+API_URL = "http://outsource.sifatdev.uz/api/blogs/"
 
 # --- SQLite ---
 def init_db():
@@ -36,16 +36,16 @@ def build_post_dict(message: types.Message):
     
     title = non_empty_lines[0] if len(non_empty_lines) > 0 else ""
     
-    # Description - 2 va 3-abzasslarni birlashtiramiz
-    if len(non_empty_lines) >= 3:
-        description = "\n".join(non_empty_lines[1:3])  # 2 va 3-qatorlar
-        content = "\n".join(non_empty_lines[3:]) if len(non_empty_lines) > 3 else ""
-    elif len(non_empty_lines) == 2:
-        description = non_empty_lines[1]  # Faqat 2-qator
-        content = ""
-    else:
-        description = ""
-        content = ""
+    # Description - faqat 2-abzas va 120 belgidan oshmasligi kerak
+    description = ""
+    if len(non_empty_lines) > 1:
+        description = non_empty_lines[1]
+        # Description ni 120 belgiga cheklash
+        if len(description) > 120:
+            description = description[:117] + "..."
+    
+    # Content - qolgan barcha qatorlar
+    content = "\n".join(non_empty_lines[2:]) if len(non_empty_lines) > 2 else ""
 
     minutes_to_read = max(1, len(text) // 1000)
 
@@ -98,11 +98,10 @@ async def send_to_api(blog_data):
             if blog_data.get('main_image_base64'):
                 # Base64 ni faylga aylantirish
                 image_data = base64.b64decode(blog_data['main_image_base64'])
-                image_file = io.BytesIO(image_data)
                 
                 # Asosiy rasm
                 form_data.add_field('main_image', 
-                                  image_file,
+                                  io.BytesIO(image_data),
                                   filename='main_image.jpg',
                                   content_type='image/jpeg')
                 
@@ -112,13 +111,22 @@ async def send_to_api(blog_data):
                                   filename='content_image.jpg', 
                                   content_type='image/jpeg')
             
+            print(f"APIga yuborilayotgan ma'lumotlar:")
+            print(f"Title: {blog_data['title']}")
+            print(f"Description: {blog_data['description']}")
+            print(f"Content uzunligi: {len(blog_data['content'])}")
+            print(f"Creator: {blog_data['creator']}")
+            print(f"Minutes to read: {blog_data['minutes_to_read']}")
+            
             async with session.post(API_URL, data=form_data) as response:
+                response_text = await response.text()
+                print(f"API javobi: {response.status} - {response_text}")
+                
                 if response.status == 201:
                     print("✅ Ma'lumot APIga muvaffaqiyatli yuborildi")
                     return True
                 else:
-                    error_text = await response.text()
-                    print(f"❌ APIga yuborishda xato: {response.status} - {error_text}")
+                    print(f"❌ APIga yuborishda xato: {response.status}")
                     return False
                     
     except Exception as e:
@@ -133,8 +141,17 @@ async def save_post(message: types.Message):
     # Rasmni yuklab olish
     main_image_base64 = None
     if message.photo:
+        print("Rasm yuklanmoqda...")
         main_image_base64 = await download_image(message.bot, message.photo[-1])
-        d['main_image_base64'] = main_image_base64
+        if main_image_base64:
+            print("Rasm muvaffaqiyatli yuklandi")
+            d['main_image_base64'] = main_image_base64
+        else:
+            print("Rasm yuklash muvaffaqiyatsiz")
+
+    print(f"Title uzunligi: {len(d['title'])}")
+    print(f"Description uzunligi: {len(d['description'])}")
+    print(f"Content uzunligi: {len(d['content'])}")
 
     # APIga yuborish
     api_success = await send_to_api(d)
@@ -153,8 +170,6 @@ async def save_post(message: types.Message):
         print("✅ Ma'lumotlar saqlandi va APIga yuborildi")
     else:
         print("❌ APIga yuborish muvaffaqiyatsiz, ma'lumotlar saqlanmadi")
-
-    print(d)
 
 
 # --- Bot ---
