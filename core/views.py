@@ -23,6 +23,7 @@ from .serializers import (
     InvestorProgramSerializer, StatisticsSerializer, TaxSerializer
 )
 import requests
+from rest_framework.viewsets import ModelViewSet
 
 # --- Pagination ---
 class BlogPagination(PageNumberPagination):
@@ -84,13 +85,17 @@ class FAQViewSet(ReadOnlyViewSet):
     queryset = FAQ.objects.all()
     serializer_class = FAQSerializer
 
-class BlogViewSet(ReadOnlyModelViewSet):
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.viewsets import ModelViewSet
+
+class BlogViewSet(ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
     pagination_class = BlogPagination
+    parser_classes = [MultiPartParser, FormParser]  # <— MUHIM: Rasmlar uchun!
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ['title', 'description', 'content', 'creator']
-    lookup_field = 'slug'  # <-- Asosiy o‘zgarish shu yerda
+    lookup_field = 'slug'
 
     def get_queryset(self):
         queryset = super().get_queryset()

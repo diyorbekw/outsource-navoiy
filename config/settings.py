@@ -13,7 +13,7 @@ DEBUG = True  # ✅ Productionda False bo‘ladi
 ALLOWED_HOSTS = [
     "outsource.sifatdev.uz",
     "127.0.0.1",
-    "localhost",
+    "localhost",    
 ]
 
 # === APPS ===

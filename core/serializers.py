@@ -5,6 +5,8 @@ from .models import (
     SuccessNumber, SpecialCategories, SpecialService,
     Education, InvestorProgram, Statistics, Tax
 )
+from django.utils.text import slugify
+import uuid
 
 class ClientSerializer(serializers.ModelSerializer):
     profile_photo = serializers.SerializerMethodField()
@@ -24,22 +26,24 @@ class FAQSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BlogSerializer(serializers.ModelSerializer):
-    main_image = serializers.SerializerMethodField()
-    content_image = serializers.SerializerMethodField()
-    
     class Meta:
         model = Blog
         fields = '__all__'
-    
-    def get_main_image(self, obj):
-        if obj.main_image:
-            return self.context['request'].build_absolute_uri(obj.main_image.url)
-        return None
-    
-    def get_content_image(self, obj):
-        if obj.content_image:
-            return self.context['request'].build_absolute_uri(obj.content_image.url)
-        return None
+        extra_kwargs = {"slug": {"required": False}}
+
+    def create(self, validated_data):
+        # agar slug berilmagan bo‘lsa avtomatik yaratamiz
+        title = validated_data.get('title', '')
+        validated_data['slug'] = slugify(title) + "-" + uuid.uuid4().hex[:6]
+
+        return super().create(validated_data)
+
+    def update(self, instance, validated_data):
+        # title o‘zgarsa slug ham o‘zgartirish
+        if 'title' in validated_data:
+            title = validated_data['title']
+            instance.slug = slugify(title) + "-" + uuid.uuid4().hex[:6]
+        return super().update(instance, validated_data)
 
 class RiskSerializer(serializers.ModelSerializer):
     class Meta:

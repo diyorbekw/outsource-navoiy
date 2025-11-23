@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from django.utils.text import slugify
 
 class Client(models.Model):
     full_name = models.CharField(max_length=255)
@@ -36,15 +37,21 @@ class Blog(models.Model):
     content_image = models.ImageField(upload_to='blog_content_images/')
     minutes_to_read = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    slug = models.SlugField(unique=True)
-    
-    def __str__(self):
-        return self.title
-    
-    class Meta:
-        verbose_name = "Blog"
-        verbose_name_plural = "Blogs"
-        ordering = ['-created_at']
+    slug = models.SlugField(unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base_slug = slugify(self.title)
+            unique_slug = base_slug
+            counter = 1
+
+            while Blog.objects.filter(slug=unique_slug).exists():
+                unique_slug = f"{base_slug}-{counter}"
+                counter += 1
+
+            self.slug = unique_slug
+
+        super().save(*args, **kwargs)
 
 class Risk(models.Model):
     percent = models.FloatField()
