@@ -56,7 +56,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:8000",       # ✅ Localhost frontend uchun
     "http://127.0.0.1:8000",
-    "https://outsource-umber.vercel.app/"
+    "https://outsource-umber.vercel.app"
 ]
 
 CORS_ALLOW_CREDENTIALS = True  # cookie yoki token yuborish uchun (agar kerak bo‘lsa)
