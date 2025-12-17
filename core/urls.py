@@ -14,7 +14,6 @@ from .views import (
 
 # --- API router ---
 router = DefaultRouter()
-router.register(r'clients', ClientViewSet, basename='clients')
 router.register(r'faqs', FAQViewSet, basename='faqs')
 router.register(r'blogs', BlogViewSet, basename='blogs')
 router.register(r'risks', RiskViewSet, basename='risks')
