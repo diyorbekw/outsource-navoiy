@@ -187,3 +187,38 @@ class Tax(models.Model):
     class Meta:
         verbose_name = "Tax"
         verbose_name_plural = "Taxes"
+
+class Set(models.Model):
+    title = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='sets/')
+    description = models.TextField()
+    
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "Set"
+        verbose_name_plural = "Sets"
+        
+class SliderImage(models.Model):
+    slider = models.ForeignKey('Slider', related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='sliders/')
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+        verbose_name = "Slider Image"
+        verbose_name_plural = "Slider Images"
+    
+    def __str__(self):
+        return f"Slider {self.slider.id} - Image {self.order}"
+
+class Slider(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True, help_text="Slider nomi (ixtiyoriy)")
+    
+    def __str__(self):
+        return f"Slider {self.id}" + (f" - {self.name}" if self.name else "")
+    
+    class Meta:
+        verbose_name = "Slider"
+        verbose_name_plural = "Sliders"

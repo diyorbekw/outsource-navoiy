@@ -6,13 +6,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
 from django.utils import timezone
 from datetime import timedelta
+from rest_framework import generics
 from django.db.models import Q
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from .models import (
     Client, FAQ, Blog, Risk,
     OneStopShopProgram, OutSourcingService, Contact,
     SuccessNumber, SpecialCategories, SpecialService,
-    Education, InvestorProgram, Statistics, Tax
+    Education, InvestorProgram, Statistics, Tax, Set
 )
 from .serializers import (
     ClientSerializer, FAQSerializer, BlogSerializer,
@@ -20,10 +21,11 @@ from .serializers import (
     OutSourcingServiceSerializer, ContactSerializer,
     SuccessNumberSerializer, SpecialCategoriesSerializer, 
     SpecialServiceSerializer, EducationSerializer,
-    InvestorProgramSerializer, StatisticsSerializer, TaxSerializer
+    InvestorProgramSerializer, StatisticsSerializer, TaxSerializer, SetSerializer
 )
 import requests
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.views import APIView
 
 # --- Pagination ---
 class BlogPagination(PageNumberPagination):
@@ -223,3 +225,28 @@ class TaxViewSet(ReadOnlyViewSet):
     """
     queryset = Tax.objects.all()
     serializer_class = TaxSerializer
+    
+class SetViewSet(ReadOnlyViewSet):
+    """
+    Set uchun faqat GET so'rovi
+    """
+    queryset = Set.objects.all()
+    serializer_class = SetSerializer
+    
+from .models import Slider
+from .serializers import SliderSerializer
+
+class SliderViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+    """
+    Slider uchun ViewSet
+    """
+    queryset = Slider.objects.prefetch_related('images').all()
+    serializer_class = SliderSerializer
+    
+    def list(self, request, *args, **kwargs):
+        # Faqat birinchi slider olish
+        slider = self.get_queryset().first()
+        if slider:
+            serializer = self.get_serializer(slider, context={'request': request})
+            return Response(serializer.data)
+        return Response({"detail": "Slider topilmadi"}, status=status.HTTP_404_NOT_FOUND)

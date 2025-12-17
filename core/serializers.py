@@ -3,7 +3,7 @@ from .models import (
     Client, FAQ, Blog, Risk,
     OneStopShopProgram, OutSourcingService, Contact,
     SuccessNumber, SpecialCategories, SpecialService,
-    Education, InvestorProgram, Statistics, Tax
+    Education, InvestorProgram, Statistics, Tax, Set
 )
 from django.utils.text import slugify
 import uuid
@@ -156,3 +156,43 @@ class TaxSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tax
         fields = '__all__'
+        
+class SetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Set
+        fields = '__all__'
+        
+from rest_framework import serializers
+from .models import Slider, SliderImage
+
+class SliderImageSerializer(serializers.ModelSerializer):
+    image_url = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = SliderImage
+        fields = ['id', 'image_url', 'order']
+    
+    def get_image_url(self, obj):
+        request = self.context.get('request')
+        if obj.image and hasattr(obj.image, 'url'):
+            return request.build_absolute_uri(obj.image.url) if request else obj.image.url
+        return None
+
+class SliderSerializer(serializers.ModelSerializer):
+    images = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = Slider
+        fields = ['id', 'name', 'images']
+    
+    def get_images(self, obj):
+        request = self.context.get('request')
+        images = obj.images.all().order_by('order')
+        
+        image_urls = []
+        for image in images:
+            if image.image and hasattr(image.image, 'url'):
+                url = request.build_absolute_uri(image.image.url) if request else image.image.url
+                image_urls.append(url)
+        
+        return image_urls

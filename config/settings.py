@@ -143,5 +143,5 @@ REST_FRAMEWORK = {
 }
 
 SWAGGER_SETTINGS = {
-    'DEFAULT_API_URL': 'https://outsource.sifatdev.uz',
+    'DEFAULT_API_URL': 'http://localhost:8000/',
 }

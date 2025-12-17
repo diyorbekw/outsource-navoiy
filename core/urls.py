@@ -8,7 +8,8 @@ from .views import (
     ClientViewSet, FAQViewSet, BlogViewSet, RiskViewSet,
     OneStopShopProgramViewSet, OutSourcingServiceViewSet, ContactViewSet,
     SuccessNumberViewSet, SpecialCategoriesViewSet, SpecialServiceViewSet,
-    EducationViewSet, InvestorProgramViewSet, StatisticsViewSet, TaxViewSet
+    EducationViewSet, InvestorProgramViewSet, StatisticsViewSet, TaxViewSet,
+    SetViewSet, SliderViewSet
 )
 
 # --- API router ---
@@ -27,6 +28,8 @@ router.register(r'educations', EducationViewSet, basename='educations')
 router.register(r'investorprograms', InvestorProgramViewSet, basename='investorprograms')
 router.register(r'statistics', StatisticsViewSet, basename='statistics')
 router.register(r'taxes', TaxViewSet, basename='taxes')
+router.register(r'sets', SetViewSet, basename='sets')
+router.register(r'slider', SliderViewSet, basename='slider')
 
 # --- Swagger konfiguratsiyasi ---
 schema_view = get_schema_view(
@@ -57,7 +60,6 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('api/', include(router.urls)),
-
     # Swagger UI
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
 

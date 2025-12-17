@@ -3,7 +3,8 @@ from .models import (
     Client, FAQ, Blog, Risk, OneStopShopProgram, 
     OutSourcingService, Contact, SuccessNumber, 
     SpecialCategories, SpecialService, Education,
-    InvestorProgram, Statistics, Tax
+    InvestorProgram, Statistics, Tax, Set, Slider,
+    SliderImage
 )
 
 @admin.register(Client)
@@ -77,3 +78,22 @@ class StatisticsAdmin(admin.ModelAdmin):
 class TaxAdmin(admin.ModelAdmin):
     list_display = ('corporate_taxes', 'property_and_land_taxes', 'tax_on_dividends', 
                    'billion_turnover_tax', 'social_tax', 'vat_on_imported_services')
+    
+@admin.register(Set)
+class SetAdmin(admin.ModelAdmin):
+    list_display = ('title',)
+    search_fields = ('title', 'description')
+    
+class SliderImageInline(admin.TabularInline):
+    model = SliderImage
+    extra = 1
+    fields = ['image', 'order']
+
+@admin.register(Slider)
+class SliderAdmin(admin.ModelAdmin):
+    inlines = [SliderImageInline]
+    list_display = ['id', 'name', 'images_count']
+    
+    def images_count(self, obj):
+        return obj.images.count()
+    images_count.short_description = "Rasmlar soni"
