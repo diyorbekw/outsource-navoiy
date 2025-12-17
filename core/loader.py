@@ -11,4 +11,4 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(', ')
 
 # TELEGRAM BOT
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-ADMIN_ID = os.getenv('ADMIN_ID')
+ADMIN_ID = list(map(int, os.getenv('ADMIN_ID').split(', ')))

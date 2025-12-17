@@ -138,7 +138,7 @@ class ContactViewSet(mixins.CreateModelMixin,
 
         # Telegramga yuborish
         BOT_TOKEN = "8426824622:AAFjedbJoP5AIQQ_9iHj3Tllp-bKbSgEII8"
-        CHAT_ID = "615890961"
+        CHAT_IDS = [615890961,7945571612,5515940993]
 
         text = (
             f"📩 *Yangi murojaat!*\n\n"
@@ -150,11 +150,12 @@ class ContactViewSet(mixins.CreateModelMixin,
         )
 
         try:
-            requests.post(
-                f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
-                data={"chat_id": CHAT_ID, "text": text, "parse_mode": "Markdown"},
-                timeout=10
-            )
+            for CHAT_ID in CHAT_IDS:
+                requests.post(
+                    f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+                    data={"chat_id": CHAT_ID, "text": text, "parse_mode": "Markdown"},
+                    timeout=10
+                )
         except Exception as e:
             print(f"Telegram xatosi: {e}")
 
