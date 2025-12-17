@@ -78,7 +78,7 @@ CORS_ALLOW_HEADERS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://outsourcenavoi.uz",
     "https://outsource.sifatdev.uz",
-    "https://outsource-umber.vercel.app/"
+    "https://outsource-umber.vercel.appg"
 ]
 
 # === URL & WSGI ===
