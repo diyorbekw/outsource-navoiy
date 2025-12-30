@@ -14,7 +14,8 @@ ALLOWED_HOSTS = [
     "outsource.sifatdev.uz",
     "127.0.0.1",
     "localhost",
-    "outsource-umber.vercel.app"
+    "outsource-umber.vercel.app",
+    "outsourcenavoi.uz"
 ]
 
 # === APPS ===
