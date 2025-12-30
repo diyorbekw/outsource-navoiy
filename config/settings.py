@@ -147,5 +147,21 @@ REST_FRAMEWORK = {
 }
 
 SWAGGER_SETTINGS = {
-    'DEFAULT_API_URL': 'https://outsource.sifatdev.uz/',
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+            'description': 'JWT token: Bearer <token>'
+        }
+    },
+    'USE_SESSION_AUTH': False,
+    'JSON_EDITOR': True,
+    'SHOW_REQUEST_HEADERS': True,
+    'OPERATIONS_SORTER': 'alpha',
+    'TAGS_SORTER': 'alpha',
+    'DOC_EXPANSION': 'list',
+    'DEFAULT_MODEL_RENDERING': 'example',
+    'DEFAULT_MODEL_DEPTH': 2,
+    'DEFAULT_API_URL': "https://outsource.sifatdev.uz"
 }
